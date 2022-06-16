@@ -105,7 +105,7 @@
                             <tr>
                                 <th>Số Thứ Tự</th>           
                                 <th>Mã Hàng</th>
-                                <th>Tên sản Phẩm/th>
+                                <th>Tên sản Phẩm</th>
                                 <th>Ngày Đặt</th>
                               
 

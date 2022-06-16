@@ -19,7 +19,8 @@
                 if ($cout > 0) {
                     $_SESSION['dangnhap'] = $row_dangnhap['admin_name'];
                     $_SESSION['admin_id'] = $row_dangnhap['admin_id'];
-                    header('location: dashboard.php');
+                   header('location: dashboard.php');
+                 
                 } else {
                     echo '<p>Tài khoản hoặc mật khẩu sai </p>';
                 }
