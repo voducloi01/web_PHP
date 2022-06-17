@@ -46,21 +46,9 @@
 
 						?>
 					
-						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="product.html">Tin Tức</a>
+
 						</li>
-						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Trang
-							</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="product.html">Sản Phẩm Mới</a>							
-							
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="checkout.html">Kiểm Tra Hàng</a>
-								<a class="dropdown-item" href="payment.html">Thanh Toán</a>
-							</div>
-						</li>
+						
 						<li class="nav-item">
 							<a class="nav-link" href="contact.html">Liên Hệ</a>
 						</li>

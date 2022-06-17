@@ -104,7 +104,7 @@
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
                                 <th>Số Thứ Tự</th>           
-                                <th>Mã Hàng</th>
+                                <th>Mã giao dịch</th>
                                 <th>Tên sản Phẩm</th>
                                 <th>Ngày Đặt</th>
                               

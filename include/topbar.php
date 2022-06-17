@@ -16,6 +16,8 @@
                 if ($cout > 0) {
                     $_SESSION['dangnhap_home'] = $row_dangnhap['name'];
                     $_SESSION['khachhang_id'] = $row_dangnhap['khachhang_id'];
+                  
+
                      header('location: index.php?quanly=giohang');
                 } else {
                     echo '<script> alert("Tài khoảng hoặc mật khẩu sai!" )</script>';
@@ -48,14 +50,26 @@
 				<div class="col-lg-8 header-right mt-lg-0 mt-2">
 					<!-- header lists -->
 					<ul>
-						<li class="text-center border-right text-white">
-							<a class="play-icon popup-with-zoom-anim text-white" href="#small-dialog1">
-								<i class="fas fa-map-marker mr-2"></i>Select Location</a>
-						</li>
-						<li class="text-center border-right text-white">
-							<a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
-								<i class="fas fa-truck mr-2"></i>Xem đơn hàng</a>
-						</li>
+						
+						<?php
+								if(isset($_SESSION['dangnhap_home']))
+								{
+						 ?>
+				
+						<!-- <li class="text-center border-right text-white">
+							<a href="index.php?quanly=xemdonhang.php"  class="text-white">
+								<i class="fas fa-truck mr-2"></i>Xem đơn hàng: </a>
+						</li> -->
+					<li>
+					<div class="col-10 agileits_search">
+							<form class="form-inline" action="index.php?quanly=xemdonhang&khachhang=<?php echo $_SESSION['khachhang_id'] ?>" method="POST">	
+								<input type="submit" value="Xem đơn hàng <?php echo $_SESSION['dangnhap_home'] ?>" > </input>
+							</form>
+						</div>
+						
+					</li>
+						<?php }
+						?>
 						<li class="text-center border-right text-white">
 							<i class="fas fa-phone mr-2"></i> 001 234 5678
 						</li>
@@ -67,6 +81,7 @@
 							<a href="#" data-toggle="modal" data-target="#dangky" class="text-white">
 								<i class="fas fa-sign-out-alt mr-2"></i>Đăng Ký </a>
 						</li>
+						</form>
 					</ul>
 					<!-- //header lists -->
 				</div>
@@ -170,9 +185,9 @@
 					<div class="row">
 						<!-- search -->
 						<div class="col-10 agileits_search">
-							<form class="form-inline" action="#" method="post">
-								<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
-								<button class="btn my-2 my-sm-0" type="submit">Search</button>
+							<form class="form-inline" action="index.php?quanly=timkiem" method="POST">
+								<input class="form-control mr-sm-2" type="search" placeholder="Tìm Kiếm" aria-label="Search" name ="search_product"  required>
+								<button class="btn my-2 my-sm-0" type="submit" name="search_button" >Tìm Kiếm</button>
 							</form>
 						</div>
 						<!-- //search -->

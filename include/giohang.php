@@ -57,7 +57,8 @@ if (isset($_POST['themgiohang'])) {
 		$row_khachhang = mysqli_fetch_array($sql_select_khachhang);
 		$khachhang_id = $row_khachhang['khachhang_id'];
 		$mahang = rand(0, 9999);
-		$_SESSION['dangnhap_home'] = $row_dangnhap['name'];
+		//$_SESSION['dangnhap_home'] = $row_dangnhap['name'];
+		$_SESSION['dangnhap_home'] = $row_khachhang['name'];
 		$_SESSION['khachhang_id'] = $khachhang_id;
 		for ($i = 0; $i < count($_POST['thanhtoan_product_id']); $i++) {
 
@@ -81,17 +82,18 @@ if (isset($_POST['themgiohang'])) {
 }
 
 ?>
+<?php
+		if (isset($_SESSION['dangnhap_home'])) {
+			echo '<p style="color:#000;font-size:30px; padding:20px" >Xin Chào Bạn:' . $_SESSION['dangnhap_home'] . '<a href="index.php?quanly=giohang&dangxuat=1">   Đăng xuất</a></p>';
+		}
+		?>
 <div class="privacy py-sm-5 py-4">
 	<div class="container py-xl-4 py-lg-2">
 		<!-- tittle heading -->
 		<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
 			<span>Thêm sản phẩm vào giỏ hàng của bạn </span>
 		</h3>
-		<?php
-		if (isset($_SESSION['dangnhap_home'])) {
-			echo '<p style="color:#000">Xin Chào Bạn:' . $_SESSION['dangnhap_home'] . '<a href="index.php?quanly=giohang&dangxuat=1">   Đăng xuất</a></p>';
-		}
-		?>
+		
 		<!-- //tittle heading -->
 		<div class="checkout-right">
 			<?php

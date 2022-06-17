@@ -1,18 +1,18 @@
 <?php
 
-	if(isset($_GET['id'])){
-		$id =$_GET['id'];
+	if(isset($_POST['search_button'])){
+		$tukhoa =$_POST['search_product'];
 	}else{
-		$id = '' ;
+		$tukhoa = '' ;
 	}
 
-	$sqli_cate = mysqli_query($mysqli , "SELECT * FROM tbl_category,tbl_sanpham where tbl_category.category_id = tbl_sanpham.category_id AND tbl_sanpham.category_id = '$id'  ORDER BY tbl_sanpham.sanpham_id DESC");						
+	$sqli_cate = mysqli_query($mysqli , "SELECT * FROM tbl_sanpham WHERE sanpham_name LIKE '%$tukhoa%' ORDER BY sanpham_id DESC");						
 						
 ?>
 <div class="ads-grid py-sm-5 py-4">
 		<div class="container py-xl-4 py-lg-2">
 			<!-- tittle heading -->
-			<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3"> Danh Mục</h3>
+			<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3"> Tìm Kiếm</h3>
 			<!-- //tittle heading -->
 			<div class="row">
 				<!-- product left -->
