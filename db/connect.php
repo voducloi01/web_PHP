@@ -1,5 +1,5 @@
 <?php
-$mysqli = new mysqli("localhost","root","","bandienthoai");
+$mysqli = new mysqli("localhost","root","","banlaptop");
 
 // Check connection
 if ($mysqli -> connect_errno) {
