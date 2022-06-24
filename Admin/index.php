@@ -41,12 +41,13 @@
 
         <body>
             <h2 align="center">Đăng nhập Admin</h2>
-            <div class="col-md-4">
+            <div class="col-md-4" style="   display: flex;justify-content: center; margin: auto;">
+
                 <div class="form-group">
                     <form action="" method="POST">
-                        <label for="">Tài Khoản</label>
+                        <label for="" style="    font-weight: 600;font-size: 20px;">Tài Khoản</label>
                         <input type="text" name="taikhoan" placeholder="Điền email" class="form-control"><br />
-                        <label for="">Mật Khẩu</label>
+                        <label for="" style="    font-weight: 600;font-size: 20px;">Mật Khẩu</label>
 
                         <input type="password" name="matkhau" placeholder="Điền Mật khẩu" class="form-control"><br />
                         <input type="submit" name="dangnhap" value="Đăng nhập" class="btn btn-primary"><br />

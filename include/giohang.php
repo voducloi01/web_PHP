@@ -88,34 +88,34 @@ if (isset($_POST['themgiohang'])) {
 		}
 		?>
 <div class="privacy py-sm-5 py-4">
-	<div class="container py-xl-4 py-lg-2">
-		<!-- tittle heading -->
-		<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
-			<span>Thêm sản phẩm vào giỏ hàng của bạn </span>
-		</h3>
-		
-		<!-- //tittle heading -->
-		<div class="checkout-right">
-			<?php
+    <div class="container py-xl-4 py-lg-2">
+        <!-- tittle heading -->
+        <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+            <span>Thêm sản phẩm vào giỏ hàng của bạn </span>
+        </h3>
+
+        <!-- //tittle heading -->
+        <div class="checkout-right">
+            <?php
 			$sql_lay_giohang = mysqli_query($mysqli, "SELECT * FROM `tbl_giohang` ORDER BY giohang_id DESC ")
 			?>
 
-			<div class="table-responsive">
-				<form action="" method="POST">
-					<table class="timetable_sub">
-						<thead>
-							<tr>
-								<th>Thứ tự</th>
-								<th>Sản Phẩm</th>
-								<th>Số Lượng</th>
-								<th>Tên Sản Phẩm</th>
-								<th>Gía</th>
-								<th>Gía Tổng</th>
-								<th>Quản Lý</th>
-								<th></th>
-							</tr>
-						</thead>
-						<?php
+            <div class="table-responsive">
+                <form action="" method="POST">
+                    <table class="timetable_sub">
+                        <thead>
+                            <tr>
+                                <th>Thứ tự</th>
+                                <th>Sản Phẩm</th>
+                                <th>Số Lượng</th>
+                                <th>Tên Sản Phẩm</th>
+                                <th>Gía</th>
+                                <th>Gía Tổng</th>
+                                <th>Quản Lý</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <?php
 						$i = 0;
 						$sumtotal = 0;
 						while ($row_fetch_giohang = mysqli_fetch_array($sql_lay_giohang)) {
@@ -123,118 +123,132 @@ if (isset($_POST['themgiohang'])) {
 							$sumtotal += $total;
 							$i++;
 						?>
-							<tbody>
-								<tr class="rem1">
-									<td class="invert"><?php echo $i  ?></td>
-									<td class="invert-image">
-										<a href="single.html">
-											<img src="images/<?php echo $row_fetch_giohang['hinhanh']  ?>" alt=" " class="img-responsive" height="120">
-										</a>
-									</td>
-									<td class="invert">
-										<input type="number" name="soluong[]" value="<?php echo $row_fetch_giohang['soluong'] ?>">
-										<input type="hidden" name="product_id[]" value="<?php echo $row_fetch_giohang['sanpham_id'] ?>">
-									</td>
-									<td class="invert"><?php echo $row_fetch_giohang['tensanpham']  ?></td>
-									<td class="invert"><?php echo number_format($row_fetch_giohang['giasanpham']) . "vnd"    ?>
-									<td class="invert"><?php echo number_format($total) . "vnd" ?>
-									</td>
-									<td class="invert">
-										<a href="?quanly=giohang&xoa=<?php echo $row_fetch_giohang['giohang_id'] ?>"> Xóa</a>
+                        <tbody>
+                            <tr class="rem1">
+                                <td class="invert"><?php echo $i  ?></td>
+                                <td class="invert-image">
+                                    <a href="single.html">
+                                        <img style="width:155px"
+                                            src="images/<?php echo $row_fetch_giohang['hinhanh']  ?>" alt=" "
+                                            class="img-responsive" height="120">
+                                    </a>
+                                </td>
+                                <td class="invert">
+                                    <input type="number" name="soluong[]"
+                                        value="<?php echo $row_fetch_giohang['soluong'] ?>">
+                                    <input type="hidden" name="product_id[]"
+                                        value="<?php echo $row_fetch_giohang['sanpham_id'] ?>">
+                                </td>
+                                <td class="invert"><?php echo $row_fetch_giohang['tensanpham']  ?></td>
+                                <td class="invert">
+                                    <?php echo number_format($row_fetch_giohang['giasanpham']) . "vnd"    ?>
+                                <td class="invert"><?php echo number_format($total) . "vnd" ?>
+                                </td>
+                                <td class="invert">
+                                    <a href="?quanly=giohang&xoa=<?php echo $row_fetch_giohang['giohang_id'] ?>">
+                                        Xóa</a>
 
-			</div>
-			</td>
-			</tr>
+            </div>
+            </td>
+            </tr>
 
-			</tbody>
-		<?php
+            </tbody>
+            <?php
 						}
 		?>
-		<tr>
-			<td colspan="7">Tổng tiền :<?php echo number_format($sumtotal) . "vnd" ?> </td>
-		</tr>
-		<tr>
-			<td colspan="6"> <input type="submit" class="btn btn-success" value="Cập nhập giỏ hàng" name="capnhapsoluong"></td>
-			<?php
+            <tr>
+                <td colspan="7">Tổng tiền :<?php echo number_format($sumtotal) . "vnd" ?> </td>
+            </tr>
+            <tr>
+                <td colspan="6"> <input type="submit" class="btn btn-success" value="Cập nhập giỏ hàng"
+                        name="capnhapsoluong"></td>
+                <?php
 			$sql_select_giohang = mysqli_query($mysqli, "SELECT * FROM tbl_giohang");
 			$cout_giohang = mysqli_num_rows($sql_select_giohang);
 			?>
-			<?php if (isset($_SESSION['dangnhap_home']) && $cout_giohang > 0) {
+                <?php if (isset($_SESSION['dangnhap_home']) && $cout_giohang > 0) {
 				while ($row_1 = mysqli_fetch_array($sql_select_giohang)) {
 			?>
-					<input type="hidden" name="thanhtoan_soluong[]" value="<?php echo $row_1['soluong'] ?>">
-					<input type="hidden" name="thanhtoan_product_id[]" value="<?php echo $row_1['sanpham_id'] ?>">
+                <input type="hidden" name="thanhtoan_soluong[]" value="<?php echo $row_1['soluong'] ?>">
+                <input type="hidden" name="thanhtoan_product_id[]" value="<?php echo $row_1['sanpham_id'] ?>">
 
-				<?php } ?>
-				<td><input type="submit" class="btn btn-primary" value="Thanh Toán" name="thanhtoandangnhap"></td>
-			<?php
+                <?php } ?>
+                <td><input type="submit" class="btn btn-primary" value="Thanh Toán" name="thanhtoandangnhap"></td>
+                <?php
 			} ?>
 
-		</tr>
-		</table>
-		</form>
-		</div>
-	</div>
-	<?php
+            </tr>
+            </table>
+            </form>
+        </div>
+    </div>
+    <?php
 	if (!isset($_SESSION['dangnhap_home'])) {
 	?>
-		<div class="checkout-left">
-			<div class="address_form_agile mt-sm-5 mt-4">
-				<h4 class="mb-sm-4 mb-3">Add a new Details</h4>
-				<form action="" method="POST" class="creditly-card-form agileinfo_form">
-					<div class="creditly-wrapper wthree, w3_agileits_wrapper">
-						<div class="information-wrapper">
-							<div class="first-row">
-								<div class="controls form-group">
-									<input class="billing-address-name form-control" type="text" name="name" placeholder="Tên" required="">
-								</div>
-								<div class="w3_agileits_card_number_grids">
-									<div class="w3_agileits_card_number_grid_left form-group">
-										<div class="controls">
-											<input type="text" class="form-control" placeholder="Số điện thoại" name="phone" required="">
-										</div>
-									</div>
-									<div class="w3_agileits_card_number_grid_right form-group">
-										<div class="controls">
-											<input type="text" class="form-control" placeholder="Địa chỉ" name="address" required="">
-										</div>
-									</div>
-								</div>
-								<div class="controls form-group">
-									<input type="text" class="form-control" placeholder="Email" name="email" required="">
-								</div>
-								<div class="controls form-group">
-									<input type="text" class="form-control" placeholder="Password" name="password" required="" required="">
-								</div>
-								<textarea style="resize: none;" class="form-control" placeholder="Ghi Chú" name="note" required="">
+    <div class="checkout-left">
+        <div class="address_form_agile mt-sm-5 mt-4">
+            <h4 class="mb-sm-4 mb-3">Add a new Details</h4>
+            <form action="" method="POST" class="creditly-card-form agileinfo_form">
+                <div class="creditly-wrapper wthree, w3_agileits_wrapper">
+                    <div class="information-wrapper">
+                        <div class="first-row">
+                            <div class="controls form-group">
+                                <input class="billing-address-name form-control" type="text" name="name"
+                                    placeholder="Tên" required="">
+                            </div>
+                            <div class="w3_agileits_card_number_grids">
+                                <div class="w3_agileits_card_number_grid_left form-group">
+                                    <div class="controls">
+                                        <input type="text" class="form-control" placeholder="Số điện thoại" name="phone"
+                                            required="">
+                                    </div>
+                                </div>
+                                <div class="w3_agileits_card_number_grid_right form-group">
+                                    <div class="controls">
+                                        <input type="text" class="form-control" placeholder="Địa chỉ" name="address"
+                                            required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="controls form-group">
+                                <input type="text" class="form-control" placeholder="Email" name="email" required="">
+                            </div>
+                            <div class="controls form-group">
+                                <input type="text" class="form-control" placeholder="Password" name="password"
+                                    required="" required="">
+                            </div>
+                            <textarea style="resize: none;" class="form-control" placeholder="Ghi Chú" name="note"
+                                required="">
 
 									</textarea>
-								<div class="controls form-group">
-									<select class="option-w3ls" name="giaohang">
-										<option>Chọn Hình Thức Thanh Toán</option>
-										<option value="1">Thanh Toán Qua ATM</option>
-										<option value="0">Thanh Toán Tại Nhà</option>
+                            <div class="controls form-group">
+                                <select class="option-w3ls" name="giaohang">
+                                    <option>Chọn Hình Thức Thanh Toán</option>
+                                    <option value="1">Thanh Toán Qua ATM</option>
+                                    <option value="0">Thanh Toán Tại Nhà</option>
 
-									</select>
-								</div>
-							</div>
-							<?php
+                                </select>
+                            </div>
+                        </div>
+                        <?php
 							$sql_lay_giohang1  = mysqli_query($mysqli, "SELECT * FROM tbl_giohang ORDER BY giohang_id DESC");
 							while ($row_thanhtoan = mysqli_fetch_array($sql_lay_giohang1)) {
 							?>
-								<input type="hidden" name="thanhtoan_soluong[]" value="<?php echo $row_thanhtoan['soluong'] ?>">
-								<input type="hidden" name="thanhtoan_product_id[]" value="<?php echo $row_thanhtoan['sanpham_id'] ?>">
-							<?php
+                        <input type="hidden" name="thanhtoan_soluong[]" value="<?php echo $row_thanhtoan['soluong'] ?>">
+                        <input type="hidden" name="thanhtoan_product_id[]"
+                            value="<?php echo $row_thanhtoan['sanpham_id'] ?>">
+                        <?php
 							}
 							?>
-							<input type="submit" class="btn btn-success" name="thanhtoan" value="Thanh Toán" style="width : 20%">
-						</div>
-					</div>
-				</form>
+                        <input type="submit" class="btn btn-success" name="thanhtoan" value="Thanh Toán"
+                            style="width : 20%">
+                    </div>
+                </div>
+            </form>
 
-			</div>
-		</div>
-	<?php
+        </div>
+    </div>
+    <?php
 	}
 	?>
 </div>
