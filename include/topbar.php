@@ -89,7 +89,7 @@
                     <li>
                         <?php
 						if (isset($_SESSION['dangnhap_home'])) {
-							echo ' <span style="color:#000;font-size:15px; padding:20px" >Xin Chào:' . $_SESSION['dangnhap_home'] . '<a  href="index.php?quanly=giohang&dangxuat=1" style="color:#000;font-size:15px;> <i style="color:#000;font-size:15px; class="fas fa-sign-out-alt mr-2"></i>  Đăng xuất</a></span>';
+							echo ' <span style="color:#FFFFFF;font-size:15px; padding:20px" >Xin Chào:' . $_SESSION['dangnhap_home'] . '<a  href="index.php?quanly=giohang&dangxuat=1" style="color:#FFFFFF;font-size:15px;> <i style="color:#000;font-size:15px; class="fas fa-sign-out-alt mr-2"></i>  Đăng xuất</a></span>';
 						}
 						?>
                     </li>
@@ -187,8 +187,10 @@
             <div class="col-md-3 logo_agile">
                 <h1 class="text-center">
                     <a href="index.html" class="font-weight-bold font-italic">
-                        <img src="images/logo2.png" alt=" " class="img-fluid">Electro Store
+                        <img src="images/mk6.jpg" alt=" " width="100" hight="100" class="img-fluid">
+                        <span class="ml-5">Lợi Store</span>
                     </a>
+
                 </h1>
             </div>
             <!-- //logo -->
