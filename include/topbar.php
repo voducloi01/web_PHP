@@ -16,9 +16,9 @@
                 if ($cout > 0) {
                     $_SESSION['dangnhap_home'] = $row_dangnhap['name'];
                     $_SESSION['khachhang_id'] = $row_dangnhap['khachhang_id'];
-                  
-
+                    echo '<script>alert("Đăng Nhập Thành Công!")</script>';
                      header('location: index.php?quanly=giohang');
+                  
                 } else {
                     echo '<script> alert("Tài khoảng hoặc mật khẩu sai!" )</script>';
                 }
@@ -36,6 +36,7 @@
 			$sql_row_khachhang = mysqli_fetch_array($sql_select_khachhang);
 			$_SESSION['dangnhap_home'] = $name;
 			$_SESSION['khachhang_id'] =  $sql_row_khachhang['khachhang_id'];
+            echo '<script>alert("Đăng Ký Thành Công!")</script>';
 			header('location: index.php?quanly=giohang');
 		}
 

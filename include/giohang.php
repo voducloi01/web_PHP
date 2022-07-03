@@ -79,14 +79,33 @@ if (isset($_POST['themgiohang'])) {
 		$sql_giaodich = mysqli_query($mysqli, "INSERT INTO `tbl_giaodich`( `sanpham_id`, `soluong`, `magiaodich`,`khachhang_id`) VALUES ('$sanpham_id','$soluong','$mahang','$khachhang_id')");
 		$sql_delete_thanhtoan = mysqli_query($mysqli, "DELETE FROM `tbl_giohang`  WHERE sanpham_id='$sanpham_id'");
 	}
+} elseif(isset($_GET['partnerCode'])){
+        $code_cart = rand(0, 9999);
+        $partnerCode = $_GET['partnerCode'];
+        $orderId = $_GET['orderId'];
+        $amount = $_GET['amount'];
+        $orderInfo = $_GET['orderInfo'];
+        $orderType = $_GET['orderType'];
+        $transId = $_GET['transId'];
+        $payType = $_GET['payType'];
+
+        $insert_momo = "INSERT INTO `tbl_momo`( `partner_Code`, `order_Id`, `amount`, `orderInfo`, `order_Type`, `trans_Id`, `payType`, `code_cart`)
+         VALUES (' $partnerCode',' $orderId','  $amount','  $orderInfo',' $orderType','$transId ',' $payType ','$code_cart')";
+        $cart_momo = mysqli_query($mysqli, $insert_momo);
+
+        if($cart_momo){
+            echo '<h3> Thanh toán momo thành công</h3>';
+        }else {
+            echo '<h3> Thanh toán momo thất bại </h3>';
+        }
 }
 
 ?>
-<?php
+<!-- <?php
 		if (isset($_SESSION['dangnhap_home'])) {
 			echo '<p style="color:#000;font-size:30px; padding:20px" >Xin Chào Bạn:' . $_SESSION['dangnhap_home'] . '<a href="index.php?quanly=giohang&dangxuat=1">   Đăng xuất</a></p>';
 		}
-		?>
+		?> -->
 <div class="privacy py-sm-5 py-4">
     <div class="container py-xl-4 py-lg-2">
         <!-- tittle heading -->
@@ -173,16 +192,45 @@ if (isset($_POST['themgiohang'])) {
                 <input type="hidden" name="thanhtoan_product_id[]" value="<?php echo $row_1['sanpham_id'] ?>">
 
                 <?php } ?>
-                <td><input type="submit" class="btn btn-primary" value="Thanh Toán" name="thanhtoandangnhap"></td>
+                <td>
+
+                    <input type="submit" class="btn btn-primary" value="Thanh Toán" name="thanhtoandangnhap">
+
+                </td>
+
+                </form>
                 <?php
 			} ?>
 
             </tr>
             </table>
-            </form>
         </div>
+        <br>
+
+    </div>
+
+    <div>
+
+        <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded"
+            action="include/xulythanhtoanmomo.php">
+
+            <input type="hidden" name="tongtien_vnd" value="<?php echo number_format($sumtotal) ?> ">
+
+            <input type="submit" class="btn btn-primary" value="Thanh Toán MoMo" name="captureWallet">
+        </form>
+        <br>
+        <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded"
+            action="./include/thanhtoanqua_atm.php">
+
+            <input type="hidden" name="tongtien_vnd" value="<?php  echo number_format($sumtotal) ?> ">
+
+            <input type="submit" style="width:167px" class="btn btn-primary" value="Thanh Toán ATM" name="payWithATM">
+        </form>
+
+
     </div>
     <?php
+  
 	if (!isset($_SESSION['dangnhap_home'])) {
 	?>
     <div class="checkout-left">

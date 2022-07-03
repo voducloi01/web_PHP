@@ -31,7 +31,7 @@
                             <div class="col-md-4 product-men mt-5">
                                 <div class="men-pro-item simpleCart_shelfItem">
                                     <div class="men-thumb-item text-center">
-                                        <img style="width:230px"
+                                        <img style="width:205px;    height: 155px;"
                                             src="images/<?php echo $row_sanpham['sanpham_image'] ?>" alt="">
                                         <div class="men-cart-pro">
                                             <div class="inner-men-cart-pro">
@@ -60,7 +60,7 @@
                                                     <input type="hidden" name="sanpham_id"
                                                         value="<?php echo $row_sanpham['sanpham_id'] ?>" />
                                                     <input type="hidden" name="giasanpham"
-                                                        value="<?php echo $row_sanpham['sanpham_gia'] ?>" />
+                                                        value="<?php echo $row_sanpham['sanpham_giakhuyenmai'] ?>" />
                                                     <input type="hidden" name="hinhanh"
                                                         value="<?php echo $row_sanpham['sanpham_image'] ?>" />
                                                     <input type="hidden" name="soluong" value="1" />

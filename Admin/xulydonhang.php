@@ -182,8 +182,16 @@
 
 
 
-                        <td> <a href="?xoadonhang=<?php echo $row_donhang['mahang'] ?>">Xóa</a> || <a
-                                href="?quanly=xemdonhang&mahang=<?php echo $row_donhang['mahang'] ?>">Xem đơn hàng</a>
+                        <td> <a href="?xoadonhang=<?php echo $row_donhang['mahang'] ?>"><button
+                                    style="width: 121px; background-color:#33CC00;color:#FFFFFF">Xóa</button></a> <a
+                                href="?quanly=xemdonhang&mahang=<?php echo $row_donhang['mahang'] ?>"><button
+                                    style="    width: 121px;background-color:#33CC00;color:#FFFFFF">Xem đơn
+
+
+                                    hàng</button></a>
+
+
+
                         </td>
                     </tr>
                     <?php } ?>

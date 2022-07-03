@@ -75,8 +75,11 @@ include_once('db/connect.php');
 	else {
 		include_once('include/home.php');
 	}
-	include_once('include/footer.php');
+
 	?>
+    <?php
+    	include_once('include/footer.php'); 
+    ?>
 
 
     <!-- //copyright -->

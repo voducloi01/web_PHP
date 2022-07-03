@@ -68,10 +68,11 @@ if (isset($_GET['xoa'])) {
 
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="xulydonhang.php">Đơn hàng <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link active" href="xulydanhmuc.php">Danh mục</a>
-            <a class="nav-item nav-link active" href="sanpham.php">Sản Phẩm</a>
-            <a class="nav-item nav-link disabled active" href="xulykhachhang.php">Khách hàng</a>
+                <a class="nav-item nav-link active" href="xulydonhang.php">Đơn hàng <span
+                        class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="xulydanhmuc.php">Danh mục</a>
+                <a class="nav-item nav-link active" href="sanpham.php">Sản Phẩm</a>
+                <a class="nav-item nav-link disabled active" href="xulykhachhang.php">Khách hàng</a>
             </div>
         </div>
     </nav>
@@ -88,90 +89,103 @@ if (isset($_GET['xoa'])) {
                 $id_category = $row_catnhat['category_id'];
 
             ?>
-                <div class="col-md-4">
-                    <h4>Cập nhật Sản Phẩm</h4>
+            <div class="col-md-4">
+                <h4>Cập nhật Sản Phẩm</h4>
 
-                    <form action="" method="POST" enctype="multipart/form-data">
-                        <label for="">Tên Sản Phẩm </label>
-                        <input type="text" name="tensanpham" class="form-control" placeholder="Tên Sản Phẩm" value="<?php echo $row_catnhat['sanpham_name'] ?>">
-                        <input type="hidden" name="id_update" class="form-control"  value="<?php echo $row_catnhat['sanpham_id'] ?>">
-                        <label for="">Hình ảnh </label>
-                        <input type="file" name="hinhanh" class="form-control">
-                        <img src="../uploads/<?php echo $row_catnhat['sanpham_image'] ?>" height="70px" width="50px" alt=""> <br />
-                        <label for="">Gía</label>
-                        <input type="text" name="gia" class="form-control" placeholder="Gía" value="<?php echo $row_catnhat['sanpham_gia'] ?>">
-                        <label for="">Gía Khuyến mãi</label>
-                        <input type="text" name="giakhuyenmai" class="form-control" placeholder="Gía khuyến mãi" value="<?php echo $row_catnhat['sanpham_giakhuyenmai'] ?>">
-                        <label for="">Số Lượng</label>
-                        <input type="text" name="soluong" class="form-control" placeholder="Số Lượng" value="<?php echo $row_catnhat['sanpham_soluong'] ?>">
-                        <label for="">Mô tả</label>
-                        <textarea type="text" rows="10" name="mota" class="form-control"> <?php echo $row_catnhat['sanpham_mota'] ?> </textarea> <br>
-                        <label for="">Chi Tiết</label>
-                        <textarea type="text" rows="10" name="chitiet" class="form-control"> <?php echo $row_catnhat['sanpham_chitiet'] ?></textarea> <br>
-                        <?php
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <label for="">Tên Sản Phẩm </label>
+                    <input type="text" name="tensanpham" class="form-control" placeholder="Tên Sản Phẩm" required=""
+                        value="<?php echo $row_catnhat['sanpham_name'] ?>">
+                    <input type="hidden" name="id_update" class="form-control"
+                        value="<?php echo $row_catnhat['sanpham_id'] ?>">
+                    <label for="">Hình ảnh </label>
+                    <input type="file" name="hinhanh" class="form-control">
+                    <img src="../uploads/<?php echo $row_catnhat['sanpham_image'] ?>" height="70px" width="50px" alt="">
+                    <br />
+                    <label for="">Gía</label>
+                    <input type="number" name="gia" class="form-control" placeholder="Gía"
+                        value="<?php echo $row_catnhat['sanpham_gia'] ?>">
+                    <label for="">Gía Khuyến mãi</label>
+                    <input type="number" name="giakhuyenmai" class="form-control" placeholder="Gía khuyến mãi"
+                        value="<?php echo $row_catnhat['sanpham_giakhuyenmai'] ?>">
+                    <label for="">Số Lượng</label>
+                    <input type="text" name="soluong" class="form-control" placeholder="Số Lượng"
+                        value="<?php echo $row_catnhat['sanpham_soluong'] ?>">
+                    <label for="">Mô tả</label>
+                    <textarea type="text" rows="10" name="mota"
+                        class="form-control"> <?php echo $row_catnhat['sanpham_mota'] ?> </textarea> <br>
+                    <label for="">Chi Tiết</label>
+                    <textarea type="text" rows="10" name="chitiet"
+                        class="form-control"> <?php echo $row_catnhat['sanpham_chitiet'] ?></textarea> <br>
+                    <?php
                         $sql_select_danhmuc = mysqli_query($mysqli, "SELECT * FROM tbl_category ORDER BY category_id DESC");
                         ?>
-                        <select name="danhmuc" class="form-control">
-                            <option value="0">---chỉ chọn danh mục-----</option>
-                            <?php while ($row_danhmuc = mysqli_fetch_array($sql_select_danhmuc)) {
+                    <select name="danhmuc" class="form-control">
+                        <option value="0">---chỉ chọn danh mục-----</option>
+                        <?php while ($row_danhmuc = mysqli_fetch_array($sql_select_danhmuc)) {
                                 if ($id_category == $row_danhmuc['category_id']) {
 
 
                             ?>
-                                    <option selected value="<?php echo $row_danhmuc['category_id'] ?>"><?php echo $row_danhmuc['category_name'] ?></option>
-                                <?php
+                        <option selected value="<?php echo $row_danhmuc['category_id'] ?>">
+                            <?php echo $row_danhmuc['category_name'] ?></option>
+                        <?php
                                 } else {
 
                                 ?>
-                                    <option value="<?php echo $row_danhmuc['category_id'] ?>"><?php echo $row_danhmuc['category_name'] ?></option>
-                            <?php
+                        <option value="<?php echo $row_danhmuc['category_id'] ?>">
+                            <?php echo $row_danhmuc['category_name'] ?></option>
+                        <?php
 
 
                                 }
                             }
                             ?>
-                        </select>
+                    </select>
 
 
-                        <input type="submit" name="capnhatsanpham" class="btn btn-success " style="margin-top: 20px;" value="Cập nhập sản phẩm">
+                    <input type="submit" name="capnhatsanpham" class="btn btn-success " style="margin-top: 20px;"
+                        value="Cập nhập sản phẩm">
 
-                    </form>
-                </div>
+                </form>
+            </div>
 
             <?php
             } else {
             ?>
-                <div class="col-md-4">
-                    <h4>Thêm Sản Phẩm</h4>
+            <div class="col-md-4">
+                <h4>Thêm Sản Phẩm</h4>
 
-                    <form action="" method="POST" enctype="multipart/form-data">
-                        <label for="">Tên Sản Phẩm </label>
-                        <input type="text" name="tensanpham" class="form-control" placeholder="Tên Sản Phẩm">
-                        <label for="">Hình ảnh </label>
-                        <input type="file" name="hinhanh" class="form-control">
-                        <label for="">Gía</label>
-                        <input type="text" name="gia" class="form-control" placeholder="Gía">
-                        <label for="">Gía Khuyến mãi</label>
-                        <input type="text" name="giakhuyenmai" class="form-control" placeholder="Gía khuyến mãi">
-                        <label for="">Số Lượng</label>
-                        <input type="text" name="soluong" class="form-control" placeholder="Số Lượng">
-                        <label for="">Mô tả</label>
-                        <textarea type="text" name="mota" class="form-control"> </textarea> <br>
-                        <label for="">Chi Tiết</label>
-                        <textarea type="text" name="chitiet" class="form-control"> </textarea> <br>
-                        <?php $sql_select_danhmuc = mysqli_query($mysqli, "SELECT * FROM tbl_category ORDER BY category_id DESC");   ?>
-                        <select name="danhmuc" class="form-control">
-                            <option value="0">---chỉ chọn danh mục-----</option>
-                            <?php while ($row_danhmuc = mysqli_fetch_array($sql_select_danhmuc)) {
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <label for="">Tên Sản Phẩm </label>
+                    <input type="text" name="tensanpham" class="form-control" placeholder="Tên Sản Phẩm">
+                    <label for="">Hình ảnh </label>
+                    <input type="file" name="hinhanh" class="form-control">
+                    <label for="">Gía</label>
+                    <input type="text" name="gia" class="form-control" placeholder="Gía">
+                    <label for="">Gía Khuyến mãi</label>
+                    <input type="text" name="giakhuyenmai" class="form-control" placeholder="Gía khuyến mãi">
+                    <label for="">Số Lượng</label>
+                    <input type="text" name="soluong" class="form-control" placeholder="Số Lượng">
+                    <label for="">Mô tả</label>
+                    <textarea type="text" name="mota" class="form-control"> </textarea> <br>
+                    <label for="">Chi Tiết</label>
+                    <textarea type="text" name="chitiet" class="form-control"> </textarea> <br>
+                    <?php $sql_select_danhmuc = mysqli_query($mysqli, "SELECT * FROM tbl_category ORDER BY category_id DESC");   ?>
+                    <select name="danhmuc" class="form-control">
+                        <option value="0">---chỉ chọn danh mục-----</option>
+                        <?php while ($row_danhmuc = mysqli_fetch_array($sql_select_danhmuc)) {
                             ?>
-                                <option value="<?php echo $row_danhmuc['category_id'] ?>"><?php echo $row_danhmuc['category_name'] ?></option>
-                            <?php } ?>
-                        </select>
+                        <option value="<?php echo $row_danhmuc['category_id'] ?>">
+                            <?php echo $row_danhmuc['category_name'] ?></option>
+                        <?php } ?>
+                    </select>
 
-                        <input type="submit" name="themsanpham" class="btn btn-success " style="margin-top: 20px;" value="Thêm Sản Phẩm">
+                    <input type="submit" name="themsanpham" class="btn btn-success " style="margin-top: 20px;"
+                        value="Thêm Sản Phẩm">
 
-                    </form>
-                </div>
+                </form>
+            </div>
             <?php     } ?>
 
             <div class="col-md-8">
@@ -197,21 +211,27 @@ if (isset($_GET['xoa'])) {
 
 
                     ?>
-                        <tr>
-                            <td>
-                                <?php echo $i ?>
-                            </td>
-                            <td><?php echo $row_category['sanpham_name'] ?> </td>
-                            <td><img src="../uploads/<?php echo $row_category['sanpham_image'] ?>" alt="" height="80px" width="60px"></td>
-                            <td><?php echo $row_category['sanpham_soluong'] ?> </td>
-                            <td><?php echo $row_category['category_name'] ?></td>
-                            </td>
-                            <td><?php echo  number_format($row_category['sanpham_gia'])  ?> </td>
-                            <td><?php echo number_format($row_category['sanpham_giakhuyenmai'])  ?> </td>
+                    <tr>
+                        <td>
+                            <?php echo $i ?>
+                        </td>
+                        <td><?php echo $row_category['sanpham_name'] ?> </td>
+                        <td><img src="../uploads/<?php echo $row_category['sanpham_image'] ?>" alt="" height="80px"
+                                width="60px"></td>
+                        <td><?php echo $row_category['sanpham_soluong'] ?> </td>
+                        <td><?php echo $row_category['category_name'] ?></td>
+                        </td>
+                        <td><?php echo  number_format($row_category['sanpham_gia'])  ?> </td>
+                        <td><?php echo number_format($row_category['sanpham_giakhuyenmai'])  ?> </td>
 
 
-                            <td> <a href="?xoa=<?php echo $row_category['sanpham_id'] ?>">Xóa</a>||<a href="?quanly=capnhat&capnhat_id=<?php echo $row_category['sanpham_id'] ?>">Cập Nhập</a> </td>
-                        </tr>
+                        <td> <a href="?xoa=<?php echo $row_category['sanpham_id'] ?>"><button
+                                    style="width:122px;background-color:#33CC00;color:#FFFFFF">Xóa</button></a><a
+                                href="?quanly=capnhat&capnhat_id=<?php echo $row_category['sanpham_id'] ?>"><button
+                                    style="width:122px; background-color:#33CC00;color:#FFFFFF">Cập
+                                    nhập</button></a>
+                        </td>
+                    </tr>
                     <?php
                     }
                     ?>
