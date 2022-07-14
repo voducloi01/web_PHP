@@ -30,7 +30,7 @@ $accessKey = 'klm05TvNBzhg7h7j';
 $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
 
 $orderInfo = "Thanh toán qua MoMo qua ATM";
-$amount = "40000000";
+$amount = $_POST['tongtien_vnd'];
 
 $orderId = time() ."";
 $redirectUrl = "http://localhost/web/index.php";

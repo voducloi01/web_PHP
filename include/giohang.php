@@ -1,3 +1,44 @@
+
+<?php
+include  "PHPMailer-master/src/PHPMailer.php";
+include  "PHPMailer-master/src/Exception.php";
+include  "PHPMailer-master/src/OAuth.php";
+include  "PHPMailer-master/src/POP3.php";
+include  "PHPMailer-master/src/SMTP.php";
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+$mail = new PHPMailer(true);
+if(isset($_POST['thanhtoandangnhap'])){
+  //  $taikhoan = $_POST['email_login'];
+    $tensanpham  =$_POST['nameproduct'];
+    $sl = $_POST['quantity'];
+    $tongtien = $_POST['total'];
+try {
+    
+    $mail->SMTPDebug = 0;                                
+    $mail->isSMTP();                                     
+    $mail->Host = 'smtp.gmail.com';  
+    $mail->SMTPAuth = true;                               
+    $mail->Username = 'ducloi1244@gmail.com';                 
+    $mail->Password = 'pjnlvdzrjpwcvofu';                         
+    $mail->SMTPSecure = 'tls';                            
+    $mail->Port = 587;                                   
+    //Recipients
+    $mail->setFrom('ducloi1244@gmail.com', 'Duc Loi');
+    $mail->addAddress('hungphi1244@gmail.com','Hung Phi');     
+    $mail->addCC('ducloi1244@gmail.com');
+    $mail->isHTML(true);                                  
+    $mail->Subject = 'hoadoncuaban';
+    $message = "Tên sản phẩm :" .$tensanpham . "<br>" . " Số Lượng :".$sl."<br>" ."Tổng tiền:".number_format($tongtien);
+    $mail->Body = $message;   
+    $mail->send();
+    echo '<script> alert ("Gửi mail thành công!")</script>';
+} catch (Exception $e) {
+    echo '<script> alert ("Gửi mail thất bại!")</script>', $mail->ErrorInfo;
+}
+}
+?>
 <?php
 if (isset($_POST['themgiohang'])) {
 	$tensanpham = $_POST['tensanpham'];
@@ -60,8 +101,8 @@ if (isset($_POST['themgiohang'])) {
 		//$_SESSION['dangnhap_home'] = $row_dangnhap['name'];
 		$_SESSION['dangnhap_home'] = $row_khachhang['name'];
 		$_SESSION['khachhang_id'] = $khachhang_id;
+        
 		for ($i = 0; $i < count($_POST['thanhtoan_product_id']); $i++) {
-
 			$sanpham_id = $_POST['thanhtoan_product_id'][$i];
 			$soluong = $_POST['thanhtoan_soluong'][$i];
 			$sql_donhang = mysqli_query($mysqli, "INSERT INTO `tbl_donhang`(`sanpham_id`, `soluong`, `mahang`, `khachhang_id`) VALUES ('$sanpham_id','$soluong','$mahang','$khachhang_id')");
@@ -141,6 +182,22 @@ if (isset($_POST['themgiohang'])) {
 							$total = $row_fetch_giohang['soluong'] * $row_fetch_giohang['giasanpham'];
 							$sumtotal += $total;
 							$i++;
+                            
+                            ?>
+                            <input type="hidden" name="quantity"
+                            value="<?php echo $row_fetch_giohang['soluong'] ?>">
+                    
+                            <input type="hidden" name="nameproduct"
+                            value="<?php echo $row_fetch_giohang['tensanpham'] ?>">
+
+                            <input type="hidden" name="total"
+                            value="<?php echo $row_fetch_giohang['soluong'] * $row_fetch_giohang['giasanpham'] ?>">
+                         
+                             <input type="hidden" name="giatien"
+                             value="<?php echo $row_fetch_giohang['giasanpham'] * $row_fetch_giohang['giasanpham'] ?>">
+                             <?php
+                            
+                            
 						?>
                         <tbody>
                             <tr class="rem1">
@@ -153,6 +210,7 @@ if (isset($_POST['themgiohang'])) {
                                     </a>
                                 </td>
                                 <td class="invert">
+                               
                                     <input type="number" name="soluong[]"
                                         value="<?php echo $row_fetch_giohang['soluong'] ?>">
                                     <input type="hidden" name="product_id[]"
@@ -220,13 +278,12 @@ if (isset($_POST['themgiohang'])) {
         </form>
         <br>
         <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded"
-            action="./include/thanhtoanqua_atm.php">
+            action="include/thanhtoanqua_atm.php">
 
             <input type="hidden" name="tongtien_vnd" value="<?php  echo number_format($sumtotal) ?> ">
 
             <input type="submit" style="width:167px" class="btn btn-primary" value="Thanh Toán ATM" name="payWithATM">
         </form>
-
 
     </div>
     <?php
@@ -247,7 +304,7 @@ if (isset($_POST['themgiohang'])) {
                             <div class="w3_agileits_card_number_grids">
                                 <div class="w3_agileits_card_number_grid_left form-group">
                                     <div class="controls">
-                                        <input type="text" class="form-control" placeholder="Số điện thoại" name="phone"
+                                        <input type="number" class="form-control" placeholder="Số điện thoại" name="phone"
                                             required="">
                                     </div>
                                 </div>
@@ -259,6 +316,8 @@ if (isset($_POST['themgiohang'])) {
                                 </div>
                             </div>
                             <div class="controls form-group">
+                              
+
                                 <input type="text" class="form-control" placeholder="Email" name="email" required="">
                             </div>
                             <div class="controls form-group">

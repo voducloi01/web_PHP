@@ -67,6 +67,8 @@ include_once('db/connect.php');
 		include_once('include/chitietsanpham.php');
 	} elseif ($tam == 'giohang') {
 		include_once('include/giohang.php');
+
+        
 	}  elseif ($tam == 'timkiem') {
 		include_once('include/timkiem.php');
 	}	elseif ($tam =='xemdonhang') {

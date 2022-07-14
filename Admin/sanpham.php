@@ -162,11 +162,11 @@ if (isset($_GET['xoa'])) {
                     <label for="">Hình ảnh </label>
                     <input type="file" name="hinhanh" class="form-control">
                     <label for="">Gía</label>
-                    <input type="text" name="gia" class="form-control" placeholder="Gía">
+                    <input type="number" name="gia" class="form-control" placeholder="Gía">
                     <label for="">Gía Khuyến mãi</label>
-                    <input type="text" name="giakhuyenmai" class="form-control" placeholder="Gía khuyến mãi">
+                    <input type="number" name="giakhuyenmai" class="form-control" placeholder="Gía khuyến mãi">
                     <label for="">Số Lượng</label>
-                    <input type="text" name="soluong" class="form-control" placeholder="Số Lượng">
+                    <input type="number" name="soluong" class="form-control" placeholder="Số Lượng">
                     <label for="">Mô tả</label>
                     <textarea type="text" name="mota" class="form-control"> </textarea> <br>
                     <label for="">Chi Tiết</label>
