@@ -1,4 +1,3 @@
-
 <?php
 include  "PHPMailer-master/src/PHPMailer.php";
 include  "PHPMailer-master/src/Exception.php";
@@ -184,18 +183,16 @@ if (isset($_POST['themgiohang'])) {
 							$i++;
                             
                             ?>
-                            <input type="hidden" name="quantity"
-                            value="<?php echo $row_fetch_giohang['soluong'] ?>">
-                    
-                            <input type="hidden" name="nameproduct"
-                            value="<?php echo $row_fetch_giohang['tensanpham'] ?>">
+                        <input type="hidden" name="quantity" value="<?php echo $row_fetch_giohang['soluong'] ?>">
 
-                            <input type="hidden" name="total"
+                        <input type="hidden" name="nameproduct" value="<?php echo $row_fetch_giohang['tensanpham'] ?>">
+
+                        <input type="hidden" name="total"
                             value="<?php echo $row_fetch_giohang['soluong'] * $row_fetch_giohang['giasanpham'] ?>">
-                         
-                             <input type="hidden" name="giatien"
-                             value="<?php echo $row_fetch_giohang['giasanpham'] * $row_fetch_giohang['giasanpham'] ?>">
-                             <?php
+
+                        <input type="hidden" name="giatien"
+                            value="<?php echo $row_fetch_giohang['giasanpham'] * $row_fetch_giohang['giasanpham'] ?>">
+                        <?php
                             
                             
 						?>
@@ -210,7 +207,7 @@ if (isset($_POST['themgiohang'])) {
                                     </a>
                                 </td>
                                 <td class="invert">
-                               
+
                                     <input type="number" name="soluong[]"
                                         value="<?php echo $row_fetch_giohang['soluong'] ?>">
                                     <input type="hidden" name="product_id[]"
@@ -304,8 +301,8 @@ if (isset($_POST['themgiohang'])) {
                             <div class="w3_agileits_card_number_grids">
                                 <div class="w3_agileits_card_number_grid_left form-group">
                                     <div class="controls">
-                                        <input type="number" class="form-control" placeholder="Số điện thoại" name="phone"
-                                            required="">
+                                        <input type="number" class="form-control" placeholder="Số điện thoại"
+                                            name="phone" required="">
                                     </div>
                                 </div>
                                 <div class="w3_agileits_card_number_grid_right form-group">
@@ -316,7 +313,7 @@ if (isset($_POST['themgiohang'])) {
                                 </div>
                             </div>
                             <div class="controls form-group">
-                              
+
 
                                 <input type="text" class="form-control" placeholder="Email" name="email" required="">
                             </div>

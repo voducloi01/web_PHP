@@ -30,7 +30,7 @@ $accessKey = 'klm05TvNBzhg7h7j';
 $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
 
 $orderInfo = "Thanh toán qua MoMo qua ATM";
-$amount = $_POST['tongtien_vnd'];
+$amount = "8000";
 
 $orderId = time() ."";
 $redirectUrl = "http://localhost/web/index.php";
@@ -64,7 +64,7 @@ $extraData = "";
 
     //Just a example, please check more in there
 
-    header('Location: ' . $jsonResult['payUrl']);
+    header('Location: ' .$jsonResult['payUrl']);
 
 
 ?>

@@ -31,8 +31,8 @@ $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
 $orderInfo = "Thanh toán qua mã QRcode MoMo";
 $amount = $_POST['tongtien_vnd'];
 $orderId = time() ."";
-$redirectUrl = "http://localhost/web/index.php";
-$ipnUrl = "http://localhost/web/index.php";
+$redirectUrl = "http://localhost:8080/web/?quanly=giohang";
+$ipnUrl = "http://localhost:8080/web/?quanly=giohang";
 $extraData = "";
 
 
@@ -61,6 +61,6 @@ $extraData = "";
 
     //Just a example, please check more in there
 
-    header('Location: ' . $jsonResult['payUrl']);
+    header('Location:'.$jsonResult['payUrl']);
 
 ?>

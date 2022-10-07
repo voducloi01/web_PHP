@@ -1,0 +1,6 @@
+{
+    "require": {
+        "riverslei/payment": "^5.1"
+        
+    }
+}

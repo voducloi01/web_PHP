@@ -1,5 +1,5 @@
 <?php
-  session_start();
+session_start();
 include_once('db/connect.php');
 ?>
 
@@ -52,35 +52,35 @@ include_once('db/connect.php');
 
 <body>
     <?php
-	include_once('include/topbar.php');
-	include_once('include/menu.php');
-	include_once('include/slider.php');
-	if (isset($_GET['quanly'])) {
-		$tam = $_GET['quanly'];
-	} else {
-		$tam = '';
-	}
+    include_once('include/topbar.php');
+    include_once('include/menu.php');
+    include_once('include/slider.php');
 
-	if ($tam == 'danhmuc') {
-		include_once('include/danhmuc.php');
-	} elseif ($tam == 'chitietsanpham') {
-		include_once('include/chitietsanpham.php');
-	} elseif ($tam == 'giohang') {
-		include_once('include/giohang.php');
+    if (isset($_GET['quanly'])) {
+        $tam = $_GET['quanly'];
+    } else {
+        $tam = '';
+    }
 
-        
-	}  elseif ($tam == 'timkiem') {
-		include_once('include/timkiem.php');
-	}	elseif ($tam =='xemdonhang') {
-		include_once('include/xemdonhang.php');
-	}
-	else {
-		include_once('include/home.php');
-	}
+    if ($tam == 'danhmuc') {
+        include_once('include/danhmuc.php');
+    } elseif ($tam == 'chitietsanpham') {
+        include_once('include/chitietsanpham.php');
+    } elseif ($tam == 'giohang') {
+        include_once('include/giohang.php');
+    } elseif ($tam == 'timkiem') {
+        include_once('include/timkiem.php');
+    } elseif ($tam == 'xemdonhang') {
+        include_once('include/xemdonhang.php');
+    } elseif ($tam == 'buildPc') {
+        include_once('include/buildPc.php');
+    } else {
+        include_once('include/home.php');
+    }
 
-	?>
+    ?>
     <?php
-    	include_once('include/footer.php'); 
+    include_once('include/footer.php');
     ?>
 
 
@@ -127,86 +127,97 @@ include_once('db/connect.php');
     });
     </script>
 
-    <!-- <script src="js/minicart.js"></script>
-	<script> -->
-    paypals.minicarts.render();
-    paypals.minicarts.cart.on('checkout', function (evt) {
-    var items = this.items(),
-    len = items.length,
-    total = 0,
-    i;
+    <!-- cart-js -->
+    <script src="js/minicart.js"></script>
+    <script>
+    paypals.minicarts
+        .render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
 
-    // Count the number of each item in the cart
-    for (i = 0; i < len; i++) { total +=items[i].get('quantity'); } if (total < 3) { alert('The minimum order quantity
-        is 3. Please add more to your shopping cart before checking out'); evt.preventDefault(); } }); </script>
-        <!-- //cart-js -->
+    paypals.minicarts.cart.on('checkout', function(evt) {
+        var items = this.items(),
+            len = items.length,
+            total = 0,
+            i;
 
-        <!-- password-script -->
-        <script>
-        window.onload = function() {
-            document.getElementById("password1").onchange = validatePassword;
-            document.getElementById("password2").onchange = validatePassword;
+        // Count the number of each item in the cart
+        for (i = 0; i < len; i++) {
+            total += items[i].get('quantity');
         }
 
-        function validatePassword() {
-            var pass2 = document.getElementById("password2").value;
-            var pass1 = document.getElementById("password1").value;
-            if (pass1 != pass2)
-                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-            else
-                document.getElementById("password2").setCustomValidity('');
-            //empty string means no validation error
+        if (total < 3) {
+            alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+            evt.preventDefault();
         }
-        </script>
-        <!-- //password-script -->
+    });
+    </script>
+    <!-- //cart-js -->
 
-        <!-- scroll seller -->
-        <script src="js/scroll.js"></script>
-        <!-- //scroll seller -->
+    <!-- password-script -->
+    <script>
+    window.onload = function() {
+        document.getElementById("password1").onchange = validatePassword;
+        document.getElementById("password2").onchange = validatePassword;
+    }
 
-        <!-- smoothscroll -->
-        <script src="js/SmoothScroll.min.js"></script>
-        <!-- //smoothscroll -->
+    function validatePassword() {
+        var pass2 = document.getElementById("password2").value;
+        var pass1 = document.getElementById("password1").value;
+        if (pass1 != pass2)
+            document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+        else
+            document.getElementById("password2").setCustomValidity('');
+        //empty string means no validation error
+    }
+    </script>
+    <!-- //password-script -->
 
-        <!-- start-smooth-scrolling -->
-        <script src="js/move-top.js"></script>
-        <script src="js/easing.js"></script>
-        <script>
-        jQuery(document).ready(function($) {
-            $(".scroll").click(function(event) {
-                event.preventDefault();
+    <!-- scroll seller -->
+    <script src="js/scroll.js"></script>
+    <!-- //scroll seller -->
 
-                $('html,body').animate({
-                    scrollTop: $(this.hash).offset().top
-                }, 1000);
-            });
+    <!-- smoothscroll -->
+    <script src="js/SmoothScroll.min.js"></script>
+    <!-- //smoothscroll -->
+
+    <!-- start-smooth-scrolling -->
+    <script src="js/move-top.js"></script>
+    <script src="js/easing.js"></script>
+    <script>
+    jQuery(document).ready(function($) {
+        $(".scroll").click(function(event) {
+            event.preventDefault();
+
+            $('html,body').animate({
+                scrollTop: $(this.hash).offset().top
+            }, 1000);
         });
-        </script>
+    });
+    </script>
 
-        <script>
-        $(document).ready(function() {
+    <script>
+    $(document).ready(function() {
 
-            $().UItoTop({
-                easingType: 'easeOutQuart'
-            });
-
+        $().UItoTop({
+            easingType: 'easeOutQuart'
         });
-        </script>
 
-        <script src="js/bootstrap.js"></script>
-        <script src="js/imagezoom.js"></script>
+    });
+    </script>
 
-        <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+    <script src="js/bootstrap.js"></script>
+    <script src="js/imagezoom.js"></script>
 
-        <script src="js/jquery.flexslider.js"></script>
-        <script>
-        $(window).load(function() {
-            $('.flexslider').flexslider({
-                animation: "slide",
-                controlNav: "thumbnails"
-            });
+    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+
+    <script src="js/jquery.flexslider.js"></script>
+    <script>
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            controlNav: "thumbnails"
         });
-        </script>
+    });
+    </script>
 
 </body>
 
