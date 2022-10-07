@@ -13,7 +13,8 @@ $sql_category = mysqli_query($mysqli, 'SELECT * FROM `tbl_category` ORDER BY cat
                         while ($row_category = mysqli_fetch_array($sql_category)) {
                         ?>
                         <option value="<?php echo $row_category['category_id'] ?>">
-                            <?php echo $row_category['category_name'] ?></option>
+                            <?php echo $row_category['category_name'] ?>
+                        </option>
                         <?php }
                         ?>
                     </select>
@@ -33,24 +34,16 @@ $sql_category = mysqli_query($mysqli, 'SELECT * FROM `tbl_category` ORDER BY cat
                     <?php
                     $sql_category_danhmuc = mysqli_query($mysqli, 'SELECT * FROM `tbl_category` ORDER BY category_id DESC ');
                     ?>
-
-                    <!-- <li class="nav-item  mr-lg-2 mb-lg-0 mb-2">
-                        <a class="nav-link "
-                            href="?quanly=danhmuc&id= <?php echo $row_category_danhmuc['category_id'] ?>" role="button"
-                            aria-haspopup="true" aria-expanded="false">
-                            <?php echo $row_category_danhmuc['category_name'] ?>
-                        </a>
-
-                    </li> -->
                     <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
                         <div class="dropdown">
-                            <button class="dropbtn">Danh Mục LapTop</button>
+                            <button class="dropbtn">Danh Mục LapTop & Phụ Kiện</button>
                             <div class="dropdown-content">
                                 <?php
                                 while ($row_category_danhmuc = mysqli_fetch_array($sql_category_danhmuc)) {
                                 ?>
 
                                 <a class="nav-link "
+                                    style="display: flex; justify-content: center; align-items: center;"
                                     href="?quanly=danhmuc&id= <?php echo $row_category_danhmuc['category_id'] ?>"
                                     role="button" aria-haspopup="true" aria-expanded="false">
                                     <?php echo $row_category_danhmuc['category_name'] ?>
@@ -62,9 +55,9 @@ $sql_category = mysqli_query($mysqli, 'SELECT * FROM `tbl_category` ORDER BY cat
                         </div>
                     </li>
 
-
+                    <li class=" nav-item">
+                        <a class="nav-link" href="?quanly=buildPc"><span>Build PC </span></a>
                     </li>
-
 
                     <li class=" nav-item">
                         <a class="nav-link" href="contact.html">Liên Hệ</a>
@@ -95,6 +88,7 @@ $sql_category = mysqli_query($mysqli, 'SELECT * FROM `tbl_category` ORDER BY cat
     background-color: #f9f9f9;
     min-width: 160px;
     z-index: 1;
+    box-shadow: 5px 5px 10px;
 }
 
 .dropdown-content a {
@@ -106,7 +100,7 @@ $sql_category = mysqli_query($mysqli, 'SELECT * FROM `tbl_category` ORDER BY cat
 }
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1
+    background-color: #e7dada;
 }
 
 .dropdown:hover .dropdown-content {

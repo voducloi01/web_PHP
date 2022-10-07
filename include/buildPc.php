@@ -5,84 +5,28 @@
         <div>
             <table class="table">
                 <tbody>
+                    <?php
+                    $sql_category_danhmuc1 = mysqli_query($mysqli, 'SELECT * FROM `tbl_category` WHERE category_id = 7 OR category_id = 8
+                    OR category_id = 9 OR category_id = 10 OR category_id = 11 OR category_id = 12 OR category_id = 13 OR category_id = 14 
+                    OR category_id = 15 OR category_id = 16 OR category_id = 17 OR category_id = 18 OR category_id = 19 OR category_id = 20
+                     OR category_id = 21 OR category_id = 22 
+                     ');
+                    ?>
+                    <?php
+                    $i = 0;
+                    while ($row_category_danhmuc1 = mysqli_fetch_array($sql_category_danhmuc1)) {
+                        $i++;
+                    ?>
                     <tr>
-                        <td>1 .Bộ Vi Xử Lý</td>
-                        <td><button>Thêm Bộ Vi Xử Lý</button></td>
+                        <td><?php echo $i ?> . <?php echo  $row_category_danhmuc1['category_name'] ?></td>
+                        <td><button class="btn-primary">Thêm
+                                <?php echo $row_category_danhmuc1['category_name'] ?></button></td>
                         <td><img src="images/b1.jpg" alt="Girl in a jacket" width="80" height="80"></td>
                     </tr>
-                    <tr>
-                        <td> 2.Bo Mạch Chủ</td>
-                        <td><button>Thêm Bo Mạch Chủ</button></td>
-                        <td><img src="images/b1.jpg" alt="Girl in a jacket" width="80" height="80"></td>
+                    <?php }
 
-                    </tr>
-                    <tr>
-                        <td> 3. RAM</td>
-                        <td><button>Thêm RAM</button></td>
-                        <td><img src="images/b1.jpg" alt="Girl in a jacket" width="80" height="80"></td>
+                    ?>
 
-                    </tr>
-                    <tr>
-                        <td> 4.Ổ Cứng SSD</td>
-                        <td><button>Thêm Ổ Cứng SSD</button></td>
-                        <td><img src="images/b1.jpg" alt="Girl in a jacket" width="80" height="80"></td>
-
-                    </tr>
-                    <tr>
-                        <td> 5. Ổ cứng HHD</td>
-                        <td><button>Thêm Ổ cứng HHD</button></td>
-                        <td><img src="images/b1.jpg" alt="Girl in a jacket" width="80" height="80"></td>
-                    </tr>
-                    <tr>
-                        <td> 6. VGA</td>
-                        <td><button>Thêm VGA</button></td>
-                        <td><img src="images/b1.jpg" alt="Girl in a jacket" width="80" height="80"></td>
-                    </tr>
-                    <tr>
-                        <td> 7. Nguồn</td>
-                        <td><button>Thêm Nguồn</button></td>
-                        <td><img src="images/b1.jpg" alt="Girl in a jacket" width="80" height="80"></td>
-                    </tr>
-                    <tr>
-                        <td> 8. Vỏ Case</td>
-                        <td><button>Thêm Vỏ Case</button></td>
-                        <td><img src="images/b1.jpg" alt="Girl in a jacket" width="80" height="80"></td>
-                    </tr>
-                    <tr>
-                        <td> 9. Quạt tảng nhiệt</td>
-                        <td><button>Thêm Quạt tảng nhiệt</button></td>
-                        <td><img src="images/b1.jpg" alt="Girl in a jacket" width="80" height="80"></td>
-                    </tr>
-                    <tr>
-                        <td> 10. Màn Hình</td>
-                        <td><button>Thêm Màn Hình</button></td>
-                        <td><img src="images/b1.jpg" alt="Girl in a jacket" width="80" height="80"></td>
-                    </tr>
-                    <tr>
-                        <td> 11. Bàn Phím</td>
-                        <td><button>Thêm Bàn Phím</button></td>
-                        <td><img src="images/b1.jpg" alt="Girl in a jacket" width="80" height="80"></td>
-                    </tr>
-                    <tr>
-                        <td> 12. Chuột</td>
-                        <td><button>Thêm Chuột</button></td>
-                        <td><img src="images/b1.jpg" alt="Girl in a jacket" width="80" height="80"></td>
-                    </tr>
-                    <tr>
-                        <td> 13. Bàn Máy Tính</td>
-                        <td><button>Thêm Bàn Máy Tính</button></td>
-                        <td><img src="images/b1.jpg" alt="Girl in a jacket" width="80" height="80"></td>
-                    </tr>
-                    <tr>
-                        <td> 14. Tai Nghe</td>
-                        <td><button>Thêm Tai Nghe</button></td>
-                        <td><img src="images/b1.jpg" alt="Girl in a jacket" width="80" height="80"></td>
-                    </tr>
-                    <tr>
-                        <td> 15. Ghế Gaming</td>
-                        <td><button>Thêm Ghế Gaming</button></td>
-                        <td><img src="images/b1.jpg" alt="Girl in a jacket" width="80" height="80"></td>
-                    </tr>
                 </tbody>
             </table>
         </div>
