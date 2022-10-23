@@ -12,7 +12,7 @@ $sqli_cate = mysqli_query($mysqli, "SELECT * FROM tbl_category,tbl_sanpham where
 <div class="ads-grid py-sm-5 py-4">
     <div class="container py-xl-4 py-lg-2">
         <!-- tittle heading -->
-        <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3"> Sản Phẩm</h3>
+        <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3"> Sản Phẩm </h3>
         <!-- //tittle heading -->
         <div class="row">
             <!-- product left -->
@@ -50,7 +50,7 @@ $sqli_cate = mysqli_query($mysqli, "SELECT * FROM tbl_category,tbl_sanpham where
                                         <div
                                             class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 
-                                            <form action="?quanly=giohang" method="POST">
+                                            <form action="?quanly=buildPc" method="POST">
                                                 <fieldset>
                                                     <input type="hidden" name="tensanpham"
                                                         value="<?php echo $row_cate['sanpham_name'] ?>" />
@@ -61,7 +61,7 @@ $sqli_cate = mysqli_query($mysqli, "SELECT * FROM tbl_category,tbl_sanpham where
                                                     <input type="hidden" name="hinhanh"
                                                         value="<?php echo $row_cate['sanpham_image'] ?>" />
                                                     <input type="hidden" name="soluong" value="1" />
-                                                    <input type="submit" name="themgiohang" value="Thêm giỏ hàng"
+                                                    <input type="submit" name="build" value="Thêm giỏ hàng"
                                                         class="button" />
                                                 </fieldset>
                                             </form>

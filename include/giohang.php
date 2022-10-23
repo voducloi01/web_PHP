@@ -7,145 +7,146 @@ include  "PHPMailer-master/src/SMTP.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 $mail = new PHPMailer(true);
-if(isset($_POST['thanhtoandangnhap'])){
-  //  $taikhoan = $_POST['email_login'];
-    $tensanpham  =$_POST['nameproduct'];
+if (isset($_POST['thanhtoandangnhap'])) {
+    //  $taikhoan = $_POST['email_login'];
+    $tensanpham  = $_POST['nameproduct'];
     $sl = $_POST['quantity'];
     $tongtien = $_POST['total'];
-try {
-    
-    $mail->SMTPDebug = 0;                                
-    $mail->isSMTP();                                     
-    $mail->Host = 'smtp.gmail.com';  
-    $mail->SMTPAuth = true;                               
-    $mail->Username = 'ducloi1244@gmail.com';                 
-    $mail->Password = 'pjnlvdzrjpwcvofu';                         
-    $mail->SMTPSecure = 'tls';                            
-    $mail->Port = 587;                                   
-    //Recipients
-    $mail->setFrom('ducloi1244@gmail.com', 'Duc Loi');
-    $mail->addAddress('hungphi1244@gmail.com','Hung Phi');     
-    $mail->addCC('ducloi1244@gmail.com');
-    $mail->isHTML(true);                                  
-    $mail->Subject = 'hoadoncuaban';
-    $message = "Tên sản phẩm :" .$tensanpham . "<br>" . " Số Lượng :".$sl."<br>" ."Tổng tiền:".number_format($tongtien);
-    $mail->Body = $message;   
-    $mail->send();
-    echo '<script> alert ("Gửi mail thành công!")</script>';
-} catch (Exception $e) {
-    echo '<script> alert ("Gửi mail thất bại!")</script>', $mail->ErrorInfo;
-}
+    try {
+
+        $mail->SMTPDebug = 0;
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'ducloi1244@gmail.com';
+        $mail->Password = 'zseumiqcwlfdeovd';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+        //Recipients
+        $mail->setFrom('ducloi1244@gmail.com', 'Duc Loi');
+        $mail->addAddress('hungphi1244@gmail.com', 'Hung Phi');
+        $mail->addCC('ducloi1244@gmail.com');
+        $mail->isHTML(true);
+        $mail->Subject = 'hoadoncuaban';
+        $message = "Tên sản phẩm :" . $tensanpham . "<br>" . " Số Lượng :" . $sl . "<br>" . "Tổng tiền:" . number_format($tongtien);
+        $mail->Body = $message;
+        $mail->send();
+        echo '<script> alert ("Gửi mail thành công!")</script>';
+    } catch (Exception $e) {
+        echo '<script> alert ("Gửi mail thất bại!")</script>', $mail->ErrorInfo;
+    }
 }
 ?>
 <?php
 if (isset($_POST['themgiohang'])) {
-	$tensanpham = $_POST['tensanpham'];
-	$sanpham_id = $_POST['sanpham_id'];
-	$hinhanh = $_POST['hinhanh'];
-	$gia = $_POST['giasanpham'];
-	$soluong = $_POST['soluong'];
+    $tensanpham = $_POST['tensanpham'];
+    $sanpham_id = $_POST['sanpham_id'];
+    $hinhanh = $_POST['hinhanh'];
+    $gia = $_POST['giasanpham'];
+    $soluong = $_POST['soluong'];
 
-	$sql_select_giohang = mysqli_query($mysqli, "SELECT * FROM `tbl_giohang` WHERE sanpham_id ='$sanpham_id'");
-	$count =  mysqli_num_rows($sql_select_giohang);
-	if ($count > 0) {
-		$row_sanpham = mysqli_fetch_array($sql_select_giohang);
-		$soluong = 	$row_sanpham['soluong'] + 1;
-		$sql_giohang = " UPDATE `tbl_giohang` SET `soluong`='$soluong' WHERE sanpham_id = '$sanpham_id' ";
-	} else {
-		$soluong = $soluong;
-		$sql_giohang = "INSERT INTO `tbl_giohang`( `tensanpham`, `sanpham_id`, `giasanpham`, `hinhanh`, `soluong`) VALUES ('$tensanpham','$sanpham_id','$gia','	$hinhanh','	$soluong')";
-	}
+    $sql_select_giohang = mysqli_query($mysqli, "SELECT * FROM `tbl_giohang` WHERE sanpham_id ='$sanpham_id'");
+    $count =  mysqli_num_rows($sql_select_giohang);
+    if ($count > 0) {
+        $row_sanpham = mysqli_fetch_array($sql_select_giohang);
+        $soluong =     $row_sanpham['soluong'] + 1;
+        $sql_giohang = " UPDATE `tbl_giohang` SET `soluong`='$soluong' WHERE sanpham_id = '$sanpham_id' ";
+    } else {
+        $soluong = $soluong;
+        $sql_giohang = "INSERT INTO `tbl_giohang`( `tensanpham`, `sanpham_id`, `giasanpham`, `hinhanh`, `soluong`) VALUES ('$tensanpham','$sanpham_id','$gia','	$hinhanh','	$soluong')";
+    }
 
-	$insert_row =  mysqli_query($mysqli, 	$sql_giohang);
+    $insert_row =  mysqli_query($mysqli, $sql_giohang);
 
-	if ($insert_row == 0) {
-		header('Location:index.php?quanly=chitietsanpham&id=' . $sanpham_id);
-	}
+    if ($insert_row == 0) {
+        header('Location:index.php?quanly=chitietsanpham&id=' . $sanpham_id);
+    }
 } elseif (isset($_POST['capnhapsoluong'])) {
 
-	for ($i = 0; $i < count($_POST['product_id']); $i++) {
-		$sanpham_id = $_POST['product_id'][$i];
-		$soluong = $_POST['soluong'][$i];
-		if ($soluong <= 0) {
-			$sql_delete = mysqli_query($mysqli, "DELETE FROM `tbl_giohang`  WHERE sanpham_id= '$sanpham_id'");
-		} else {
+    for ($i = 0; $i < count($_POST['product_id']); $i++) {
+        $sanpham_id = $_POST['product_id'][$i];
+        $soluong = $_POST['soluong'][$i];
+        if ($soluong <= 0) {
+            $sql_delete = mysqli_query($mysqli, "DELETE FROM `tbl_giohang`  WHERE sanpham_id= '$sanpham_id'");
+        } else {
 
-			$sql_update = mysqli_query($mysqli, "UPDATE `tbl_giohang` SET `soluong`='$soluong' WHERE sanpham_id= '$sanpham_id'");
-		}
-	}
-} elseif (isset($_GET['xoa'])) {
-	$id = $_GET['xoa'];
-	$sql_delete = mysqli_query($mysqli, "DELETE FROM `tbl_giohang`  WHERE giohang_id='$id'");
-} elseif (isset($_GET['dangxuat'])) {
-	$id = $_GET['dangxuat'];
-	if ($id == 1) {
-		unset($_SESSION['dangnhap_home']);
-	}
-} elseif (isset($_POST['thanhtoan'])) {
-	$name = $_POST['name'];
-	$phone = $_POST['phone'];
-	$address = $_POST['address'];
-	$email =  $_POST['email'];
-	$password = md5($_POST['password']);
-	$note = $_POST['note'];
-	$giaohang = $_POST['giaohang'];
-	$sql_khachhang = mysqli_query($mysqli, "INSERT INTO `tbl_khachhhang`(`name`, `phone`, `address`, `email`, `note`, `giaohang`,`password`) VALUES ('$name','$phone','$address','$email','$note','$giaohang','$password')");
-
-	if ($sql_khachhang) {
-		$sql_select_khachhang = mysqli_query($mysqli, "SELECT * FROM `tbl_khachhhang` ORDER BY khachhang_id DESC LIMIT 1");
-		$row_khachhang = mysqli_fetch_array($sql_select_khachhang);
-		$khachhang_id = $row_khachhang['khachhang_id'];
-		$mahang = rand(0, 9999);
-		//$_SESSION['dangnhap_home'] = $row_dangnhap['name'];
-		$_SESSION['dangnhap_home'] = $row_khachhang['name'];
-		$_SESSION['khachhang_id'] = $khachhang_id;
-        
-		for ($i = 0; $i < count($_POST['thanhtoan_product_id']); $i++) {
-			$sanpham_id = $_POST['thanhtoan_product_id'][$i];
-			$soluong = $_POST['thanhtoan_soluong'][$i];
-			$sql_donhang = mysqli_query($mysqli, "INSERT INTO `tbl_donhang`(`sanpham_id`, `soluong`, `mahang`, `khachhang_id`) VALUES ('$sanpham_id','$soluong','$mahang','$khachhang_id')");
-			$sql_giaodich = mysqli_query($mysqli, "INSERT INTO `tbl_giaodich`( `sanpham_id`, `soluong`, `magiaodich`,`khachhang_id`) VALUES ('$sanpham_id','$soluong','$mahang','$khachhang_id')");
-			$sql_delete_thanhtoan = mysqli_query($mysqli, "DELETE FROM `tbl_giohang`  WHERE sanpham_id='$sanpham_id'");
-		}
-	}
-} elseif (isset($_POST['thanhtoandangnhap'])) {
-	$khachhang_id = $_SESSION['khachhang_id'];
-	$mahang = rand(0, 9999);
-	for ($i = 0; $i < count($_POST['thanhtoan_product_id']); $i++) {
-		$sanpham_id = $_POST['thanhtoan_product_id'][$i];
-		$soluong = $_POST['thanhtoan_soluong'][$i];
-		$sql_donhang = mysqli_query($mysqli, "INSERT INTO `tbl_donhang`(`sanpham_id`, `soluong`, `mahang`, `khachhang_id`) VALUES ('$sanpham_id','$soluong','$mahang','$khachhang_id')");
-		$sql_giaodich = mysqli_query($mysqli, "INSERT INTO `tbl_giaodich`( `sanpham_id`, `soluong`, `magiaodich`,`khachhang_id`) VALUES ('$sanpham_id','$soluong','$mahang','$khachhang_id')");
-		$sql_delete_thanhtoan = mysqli_query($mysqli, "DELETE FROM `tbl_giohang`  WHERE sanpham_id='$sanpham_id'");
-	}
-} elseif(isset($_GET['partnerCode'])){
-        $code_cart = rand(0, 9999);
-        $partnerCode = $_GET['partnerCode'];
-        $orderId = $_GET['orderId'];
-        $amount = $_GET['amount'];
-        $orderInfo = $_GET['orderInfo'];
-        $orderType = $_GET['orderType'];
-        $transId = $_GET['transId'];
-        $payType = $_GET['payType'];
-
-        $insert_momo = "INSERT INTO `tbl_momo`( `partner_Code`, `order_Id`, `amount`, `orderInfo`, `order_Type`, `trans_Id`, `payType`, `code_cart`)
-         VALUES (' $partnerCode',' $orderId','  $amount','  $orderInfo',' $orderType','$transId ',' $payType ','$code_cart')";
-        $cart_momo = mysqli_query($mysqli, $insert_momo);
-
-        if($cart_momo){
-            echo '<h3> Thanh toán momo thành công</h3>';
-        }else {
-            echo '<h3> Thanh toán momo thất bại </h3>';
+            $sql_update = mysqli_query($mysqli, "UPDATE `tbl_giohang` SET `soluong`='$soluong' WHERE sanpham_id= '$sanpham_id'");
         }
+    }
+} elseif (isset($_GET['xoa'])) {
+    $id = $_GET['xoa'];
+    $sql_delete = mysqli_query($mysqli, "DELETE FROM `tbl_giohang`  WHERE giohang_id='$id'");
+} elseif (isset($_GET['dangxuat'])) {
+    $id = $_GET['dangxuat'];
+    if ($id == 1) {
+        unset($_SESSION['dangnhap_home']);
+    }
+} elseif (isset($_POST['thanhtoan'])) {
+    $name = $_POST['name'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $email =  $_POST['email'];
+    $password = md5($_POST['password']);
+    $note = $_POST['note'];
+    $giaohang = $_POST['giaohang'];
+    $sql_khachhang = mysqli_query($mysqli, "INSERT INTO `tbl_khachhhang`(`name`, `phone`, `address`, `email`, `note`, `giaohang`,`password`) VALUES ('$name','$phone','$address','$email','$note','$giaohang','$password')");
+
+    if ($sql_khachhang) {
+        $sql_select_khachhang = mysqli_query($mysqli, "SELECT * FROM `tbl_khachhhang` ORDER BY khachhang_id DESC LIMIT 1");
+        $row_khachhang = mysqli_fetch_array($sql_select_khachhang);
+        $khachhang_id = $row_khachhang['khachhang_id'];
+        $mahang = rand(0, 9999);
+        //$_SESSION['dangnhap_home'] = $row_dangnhap['name'];
+        $_SESSION['dangnhap_home'] = $row_khachhang['name'];
+        $_SESSION['khachhang_id'] = $khachhang_id;
+
+        for ($i = 0; $i < count($_POST['thanhtoan_product_id']); $i++) {
+            $sanpham_id = $_POST['thanhtoan_product_id'][$i];
+            $soluong = $_POST['thanhtoan_soluong'][$i];
+            $sql_donhang = mysqli_query($mysqli, "INSERT INTO `tbl_donhang`(`sanpham_id`, `soluong`, `mahang`, `khachhang_id`) VALUES ('$sanpham_id','$soluong','$mahang','$khachhang_id')");
+            $sql_giaodich = mysqli_query($mysqli, "INSERT INTO `tbl_giaodich`( `sanpham_id`, `soluong`, `magiaodich`,`khachhang_id`) VALUES ('$sanpham_id','$soluong','$mahang','$khachhang_id')");
+            $sql_delete_thanhtoan = mysqli_query($mysqli, "DELETE FROM `tbl_giohang`  WHERE sanpham_id='$sanpham_id'");
+        }
+    }
+} elseif (isset($_POST['thanhtoandangnhap'])) {
+    $khachhang_id = $_SESSION['khachhang_id'];
+    $mahang = rand(0, 9999);
+    for ($i = 0; $i < count($_POST['thanhtoan_product_id']); $i++) {
+        $sanpham_id = $_POST['thanhtoan_product_id'][$i];
+        $soluong = $_POST['thanhtoan_soluong'][$i];
+        $sql_donhang = mysqli_query($mysqli, "INSERT INTO `tbl_donhang`(`sanpham_id`, `soluong`, `mahang`, `khachhang_id`) VALUES ('$sanpham_id','$soluong','$mahang','$khachhang_id')");
+        $sql_giaodich = mysqli_query($mysqli, "INSERT INTO `tbl_giaodich`( `sanpham_id`, `soluong`, `magiaodich`,`khachhang_id`) VALUES ('$sanpham_id','$soluong','$mahang','$khachhang_id')");
+        $sql_delete_thanhtoan = mysqli_query($mysqli, "DELETE FROM `tbl_giohang`  WHERE sanpham_id='$sanpham_id'");
+    }
+} elseif (isset($_GET['partnerCode'])) {
+    $code_cart = rand(0, 9999);
+    $partnerCode = $_GET['partnerCode'];
+    $orderId = $_GET['orderId'];
+    $amount = $_GET['amount'];
+    $orderInfo = $_GET['orderInfo'];
+    $orderType = $_GET['orderType'];
+    $transId = $_GET['transId'];
+    $payType = $_GET['payType'];
+
+    $insert_momo = "INSERT INTO `tbl_momo`( `partner_Code`, `order_Id`, `amount`, `orderInfo`, `order_Type`, `trans_Id`, `payType`, `code_cart`)
+         VALUES (' $partnerCode',' $orderId','  $amount','  $orderInfo',' $orderType','$transId ',' $payType ','$code_cart')";
+    $cart_momo = mysqli_query($mysqli, $insert_momo);
+
+    if ($cart_momo) {
+        echo '<h3> Thanh toán momo thành công</h3>';
+    } else {
+        echo '<h3> Thanh toán momo thất bại </h3>';
+    }
 }
 
 ?>
 <!-- <?php
-		if (isset($_SESSION['dangnhap_home'])) {
-			echo '<p style="color:#000;font-size:30px; padding:20px" >Xin Chào Bạn:' . $_SESSION['dangnhap_home'] . '<a href="index.php?quanly=giohang&dangxuat=1">   Đăng xuất</a></p>';
-		}
-		?> -->
+        if (isset($_SESSION['dangnhap_home'])) {
+            echo '<p style="color:#000;font-size:30px; padding:20px" >Xin Chào Bạn:' . $_SESSION['dangnhap_home'] . '<a href="index.php?quanly=giohang&dangxuat=1">   Đăng xuất</a></p>';
+        }
+        ?> -->
 <div class="privacy py-sm-5 py-4">
     <div class="container py-xl-4 py-lg-2">
         <!-- tittle heading -->
@@ -156,8 +157,8 @@ if (isset($_POST['themgiohang'])) {
         <!-- //tittle heading -->
         <div class="checkout-right">
             <?php
-			$sql_lay_giohang = mysqli_query($mysqli, "SELECT * FROM `tbl_giohang` ORDER BY giohang_id DESC ")
-			?>
+            $sql_lay_giohang = mysqli_query($mysqli, "SELECT * FROM `tbl_giohang` ORDER BY giohang_id DESC ")
+            ?>
 
             <div class="table-responsive">
                 <form action="" method="POST">
@@ -175,14 +176,14 @@ if (isset($_POST['themgiohang'])) {
                             </tr>
                         </thead>
                         <?php
-						$i = 0;
-						$sumtotal = 0;
-						while ($row_fetch_giohang = mysqli_fetch_array($sql_lay_giohang)) {
-							$total = $row_fetch_giohang['soluong'] * $row_fetch_giohang['giasanpham'];
-							$sumtotal += $total;
-							$i++;
-                            
-                            ?>
+                        $i = 0;
+                        $sumtotal = 0;
+                        while ($row_fetch_giohang = mysqli_fetch_array($sql_lay_giohang)) {
+                            $total = $row_fetch_giohang['soluong'] * $row_fetch_giohang['giasanpham'];
+                            $sumtotal += $total;
+                            $i++;
+
+                        ?>
                         <input type="hidden" name="quantity" value="<?php echo $row_fetch_giohang['soluong'] ?>">
 
                         <input type="hidden" name="nameproduct" value="<?php echo $row_fetch_giohang['tensanpham'] ?>">
@@ -193,9 +194,9 @@ if (isset($_POST['themgiohang'])) {
                         <input type="hidden" name="giatien"
                             value="<?php echo $row_fetch_giohang['giasanpham'] * $row_fetch_giohang['giasanpham'] ?>">
                         <?php
-                            
-                            
-						?>
+
+
+                            ?>
                         <tbody>
                             <tr class="rem1">
                                 <td class="invert"><?php echo $i  ?></td>
@@ -228,8 +229,8 @@ if (isset($_POST['themgiohang'])) {
 
             </tbody>
             <?php
-						}
-		?>
+                        }
+        ?>
             <tr>
                 <td colspan="7">Tổng tiền :<?php echo number_format($sumtotal) . "vnd" ?> </td>
             </tr>
@@ -237,25 +238,23 @@ if (isset($_POST['themgiohang'])) {
                 <td colspan="6"> <input type="submit" class="btn btn-success" value="Cập nhập giỏ hàng"
                         name="capnhapsoluong"></td>
                 <?php
-			$sql_select_giohang = mysqli_query($mysqli, "SELECT * FROM tbl_giohang");
-			$cout_giohang = mysqli_num_rows($sql_select_giohang);
-			?>
+            $sql_select_giohang = mysqli_query($mysqli, "SELECT * FROM tbl_giohang");
+            $cout_giohang = mysqli_num_rows($sql_select_giohang);
+            ?>
                 <?php if (isset($_SESSION['dangnhap_home']) && $cout_giohang > 0) {
-				while ($row_1 = mysqli_fetch_array($sql_select_giohang)) {
-			?>
+                while ($row_1 = mysqli_fetch_array($sql_select_giohang)) {
+            ?>
                 <input type="hidden" name="thanhtoan_soluong[]" value="<?php echo $row_1['soluong'] ?>">
                 <input type="hidden" name="thanhtoan_product_id[]" value="<?php echo $row_1['sanpham_id'] ?>">
 
                 <?php } ?>
                 <td>
-
                     <input type="submit" class="btn btn-primary" value="Thanh Toán" name="thanhtoandangnhap">
-
                 </td>
 
                 </form>
                 <?php
-			} ?>
+            } ?>
 
             </tr>
             </table>
@@ -264,7 +263,7 @@ if (isset($_POST['themgiohang'])) {
 
     </div>
 
-    <div>
+    <!-- <div>
 
         <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded"
             action="include/xulythanhtoanmomo.php">
@@ -277,16 +276,16 @@ if (isset($_POST['themgiohang'])) {
         <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded"
             action="include/thanhtoanqua_atm.php">
 
-            <input type="hidden" name="tongtien_vnd" value="<?php  echo number_format($sumtotal) ?> ">
+            <input type="hidden" name="tongtien_vnd" value="<?php echo number_format($sumtotal) ?> ">
 
             <input type="submit" style="width:167px" class="btn btn-primary" value="Thanh Toán ATM" name="payWithATM">
         </form>
 
-    </div>
+    </div> -->
     <?php
-  
-	if (!isset($_SESSION['dangnhap_home'])) {
-	?>
+
+    if (!isset($_SESSION['dangnhap_home'])) {
+    ?>
     <div class="checkout-left">
         <div class="address_form_agile mt-sm-5 mt-4">
             <h4 class="mb-sm-4 mb-3">Add a new Details</h4>
@@ -335,15 +334,15 @@ if (isset($_POST['themgiohang'])) {
                             </div>
                         </div>
                         <?php
-							$sql_lay_giohang1  = mysqli_query($mysqli, "SELECT * FROM tbl_giohang ORDER BY giohang_id DESC");
-							while ($row_thanhtoan = mysqli_fetch_array($sql_lay_giohang1)) {
-							?>
+                            $sql_lay_giohang1  = mysqli_query($mysqli, "SELECT * FROM tbl_giohang ORDER BY giohang_id DESC");
+                            while ($row_thanhtoan = mysqli_fetch_array($sql_lay_giohang1)) {
+                            ?>
                         <input type="hidden" name="thanhtoan_soluong[]" value="<?php echo $row_thanhtoan['soluong'] ?>">
                         <input type="hidden" name="thanhtoan_product_id[]"
                             value="<?php echo $row_thanhtoan['sanpham_id'] ?>">
                         <?php
-							}
-							?>
+                            }
+                            ?>
                         <input type="submit" class="btn btn-success" name="thanhtoan" value="Thanh Toán"
                             style="width : 20%">
                     </div>
@@ -353,7 +352,7 @@ if (isset($_POST['themgiohang'])) {
         </div>
     </div>
     <?php
-	}
-	?>
+    }
+    ?>
 </div>
 </div>

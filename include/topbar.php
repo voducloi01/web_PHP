@@ -1,43 +1,49 @@
 <?php
-        if (isset($_POST['dangnhap_home'])) {
-            $taikhoan = $_POST['email_login'];
-            $matkhau = md5($_POST['password_login']);
+if (isset($_POST['dangnhap_home'])) {
+    $taikhoan = $_POST['email_login'];
+    $matkhau = md5($_POST['password_login']);
 
-            if ($taikhoan == "" || $matkhau == "") {
-                echo '<p>Xin vui lòng nhập đầy đủ</p>';
-            } else {
+    if ($taikhoan == "" || $matkhau == "") {
+        echo '<p>Xin vui lòng nhập đầy đủ</p>';
+    } else {
 
-               $sql_select_khachhang = mysqli_query($mysqli, "SELECT * FROM `tbl_khachhhang` WHERE  email = '$taikhoan' AND password = '$matkhau' Limit 1");
-                $cout = mysqli_num_rows($sql_select_khachhang);
-                $row_dangnhap = mysqli_fetch_array($sql_select_khachhang);          
-                if ($cout > 0) {
-                    $_SESSION['dangnhap_home'] = $row_dangnhap['name'];
-                    $_SESSION['khachhang_id'] = $row_dangnhap['khachhang_id'];
-                    echo '<script>alert("Đăng Nhập Thành Công!")</script>';
-                     header('location: index.php?quanly=giohang');
-                  
-                } else {
-                    echo '<script> alert("Tài khoảng hoặc mật khẩu sai!" )</script>';
-                }
-            }
-        } elseif(isset($_POST['dangky'])){$name = $_POST['name'];
-			$name = $_POST['name'];
-			$phone = $_POST['phone'];
-			$address = $_POST['address'];
-			$email =  $_POST['email'];
-			$password = md5( $_POST['password']);
-			$note = $_POST['note'];
-			$giaohang = $_POST['giaohang'];
-			$sql_khachhang = mysqli_query($mysqli,"INSERT INTO `tbl_khachhhang`(`name`, `phone`, `address`, `email`, `note`, `giaohang`,`password`) VALUES ('$name','$phone','$address','$email','$note','$giaohang','$password')");
-			$sql_select_khachhang = mysqli_query($mysqli,"SELECT * FROM `tbl_khachhhang` ORDER BY  khachhang_id DESC LIMIT 1");
-			$sql_row_khachhang = mysqli_fetch_array($sql_select_khachhang);
-			$_SESSION['dangnhap_home'] = $name;
-			$_SESSION['khachhang_id'] =  $sql_row_khachhang['khachhang_id'];
-            echo '<script>alert("Đăng Ký Thành Công!")</script>';
-			header('location: index.php?quanly=giohang');
-		}
+        $sql_select_khachhang = mysqli_query($mysqli, "SELECT * FROM `tbl_khachhhang` WHERE  email = '$taikhoan' AND password = '$matkhau' Limit 1");
+        $cout = mysqli_num_rows($sql_select_khachhang);
+        $row_dangnhap = mysqli_fetch_array($sql_select_khachhang);
+        if ($cout > 0) {
+            $_SESSION['dangnhap_home'] = $row_dangnhap['name'];
+            $_SESSION['khachhang_id'] = $row_dangnhap['khachhang_id'];
+            echo '<script>alert("Đăng Nhập Thành Công!")</script>';
+            header('location: index.php?quanly=giohang');
+        } else {
+            echo '<script> alert("Tài khoảng hoặc mật khẩu sai!" )</script>';
+        }
+    }
+} elseif (isset($_POST['dangky'])) {
+    $name = $_POST['name'];
+    $name = $_POST['name'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $email =  $_POST['email'];
+    $password = md5($_POST['password']);
+    $note = $_POST['note'];
+    $giaohang = $_POST['giaohang'];
+    $sql_khachhang = mysqli_query($mysqli, "INSERT INTO `tbl_khachhhang`(`name`, `phone`, `address`, `email`, `note`, `giaohang`,`password`) VALUES ('$name','$phone','$address','$email','$note','$giaohang','$password')");
+    $sql_select_khachhang = mysqli_query($mysqli, "SELECT * FROM `tbl_khachhhang` ORDER BY  khachhang_id DESC LIMIT 1");
+    $sql_row_khachhang = mysqli_fetch_array($sql_select_khachhang);
+    $_SESSION['dangnhap_home'] = $name;
+    $_SESSION['khachhang_id'] =  $sql_row_khachhang['khachhang_id'];
+    echo '<script>alert("Đăng Ký Thành Công!")</script>';
+    header('location: index.php?quanly=giohang');
+}
 
-        ?>
+?>
+
+<script>
+localStorage.setItem('email_login', '<?php echo $_SESSION['dangnhap_home']; ?>');
+</script>
+
+
 <!-- top-header -->
 <div class="agile-main-top">
     <div class="container-fluid">
@@ -46,18 +52,11 @@
 
             </div>
             <div class="col-lg-8 header-right mt-lg-0 mt-2">
-                <!-- header lists -->
                 <ul>
 
                     <?php
-								if(isset($_SESSION['dangnhap_home']))
-								{
-						 ?>
-
-                    <!-- <li class="text-center border-right text-white">
-							<a href="index.php?quanly=xemdonhang.php"  class="text-white">
-								<i class="fas fa-truck mr-2"></i>Xem đơn hàng: </a>
-						</li> -->
+                    if (isset($_SESSION['dangnhap_home'])) {
+                    ?>
                     <li>
                         <div class="col-10 agileits_search">
                             <form class="form-inline"
@@ -70,7 +69,7 @@
 
                     </li>
                     <?php }
-						?>
+                    ?>
                     <li class="text-center border-right text-white">
                         <i class="fas fa-phone mr-2"></i> 001 234 5678
                     </li>
@@ -86,10 +85,10 @@
 
                     <li>
                         <?php
-						if (isset($_SESSION['dangnhap_home'])) {
-							echo ' <span style="color:#FFFFFF;font-size:15px; padding:20px" >Xin Chào:' . $_SESSION['dangnhap_home'] . '<a  href="index.php?quanly=giohang&dangxuat=1" style="color:#FFFFFF;font-size:15px;> <i style="color:#000;font-size:15px; class="fas fa-sign-out-alt mr-2"></i>  Đăng xuất</a></span>';
-						}
-						?>
+                        if (isset($_SESSION['dangnhap_home'])) {
+                            echo ' <span style="color:#FFFFFF;font-size:15px; padding:20px" >Xin Chào:' . $_SESSION['dangnhap_home'] . '<a  href="index.php?quanly=giohang&dangxuat=1" style="color:#FFFFFF;font-size:15px;> <i style="color:#000;font-size:15px; class="fas fa-sign-out-alt mr-2"></i>  Đăng xuất</a></span>';
+                        }
+                        ?>
                     </li>
                     </form>
                 </ul>
@@ -211,6 +210,7 @@
                                 <input type="hidden" name="cmd" value="_cart">
                                 <input type="hidden" name="display" value="1">
                                 <button class="btn w3view-cart" type="submit" name="submit" value="">
+
                                     <i class="fas fa-cart-arrow-down"></i>
                                 </button>
                             </form>
