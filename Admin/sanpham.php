@@ -28,7 +28,7 @@ if (isset($_POST['themsanpham'])) {
     $mota  = $_POST['mota'];
     $path = '../uploads/';
 
-    if ($hinhanh =='') {
+    if ($hinhanh == '') {
         move_uploaded_file($hinhanh_tmp, $path . $hinhanh);
         $update_no_image = "UPDATE `tbl_sanpham` SET `category_id`='$danhmuc',`sanpham_name`='$tensanpham',`sanpham_chitiet`='$chitiet',
         `sanpham_mota`='$mota',`sanpham_gia`='$gia',`sanpham_giakhuyenmai`='$giakhuyenmai',`sanpham_soluong`='$soluong' WHERE sanpham_id = '$id_update'";
@@ -109,7 +109,7 @@ if (isset($_GET['xoa'])) {
                     <input type="number" name="giakhuyenmai" class="form-control" placeholder="Gía khuyến mãi"
                         value="<?php echo $row_catnhat['sanpham_giakhuyenmai'] ?>">
                     <label for="">Số Lượng</label>
-                    <input type="text" name="soluong" class="form-control" placeholder="Số Lượng"
+                    <input type="number" name="soluong" class="form-control" placeholder="Số Lượng"
                         value="<?php echo $row_catnhat['sanpham_soluong'] ?>">
                     <label for="">Mô tả</label>
                     <textarea type="text" rows="10" name="mota"
