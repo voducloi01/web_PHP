@@ -1,12 +1,6 @@
 <?php
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-} else {
-    $id = '';
-}
-
-$sqli_cate = mysqli_query($mysqli, "SELECT * FROM tbl_category,tbl_sanpham where tbl_category.category_id = tbl_sanpham.category_id AND tbl_sanpham.category_id = '$id'  ORDER BY tbl_sanpham.sanpham_id DESC");
+$sqli_cate = mysqli_query($mysqli, "SELECT * FROM tbl_sanpham where 1");
 
 ?>
 <div class="ads-grid py-sm-5 py-4">
