@@ -13,7 +13,7 @@ if (isset($_POST['thanhtoandangnhap'])) {
     //  $taikhoan = $_POST['email_login'];
     $tensanpham  = $_POST['nameproduct'];
     $sl = $_POST['quantity'];
-    $tongtien = $_POST['total'];
+    $tongtien = $_POST['sumtotal'];
     try {
 
         $mail->SMTPDebug = 0;
@@ -21,7 +21,7 @@ if (isset($_POST['thanhtoandangnhap'])) {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'ducloi1244@gmail.com';
-        $mail->Password = 'zseumiqcwlfdeovd';
+        $mail->Password = 'dedsvivegzatfknh';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
         //Recipients
@@ -124,11 +124,8 @@ if (isset($_POST['build'])) {
         <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3"> Build Pc</h3>
         <div class="btn-group wrap_btn">
             <?php
-            $sql_category_danhmuc1 = mysqli_query($mysqli, 'SELECT * FROM `tbl_category` WHERE category_id = 7 OR category_id = 8
-                    OR category_id = 9 OR category_id = 10 OR category_id = 11 OR category_id = 12 OR category_id = 13 OR category_id = 14 
-                    OR category_id = 15 OR category_id = 16 OR category_id = 17 OR category_id = 18 OR category_id = 19 OR category_id = 20
-                     OR category_id = 21 OR category_id = 22 
-                     ');
+            $sql_category_danhmuc1 = mysqli_query($mysqli, 'SELECT * FROM `tbl_category` WHERE category_id >= 7 ');
+
             ?>
             <?php
             $i = 0;
@@ -181,6 +178,8 @@ if (isset($_POST['build'])) {
 
                         <input type="hidden" name="total"
                             value="<?php echo $row_fetch_giohang['soluong'] * $row_fetch_giohang['giasanpham'] ?>">
+
+                        <input type="hidden" name="sumtotal" value="<?php echo $sumtotal ?>">
 
                         <input type="hidden" name="giatien"
                             value="<?php echo $row_fetch_giohang['giasanpham'] * $row_fetch_giohang['giasanpham'] ?>">

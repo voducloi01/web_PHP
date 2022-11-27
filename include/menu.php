@@ -50,7 +50,12 @@ $sql_category = mysqli_query($mysqli, 'SELECT * FROM `tbl_category` ORDER BY cat
 
                     </li>
                     <li class="nav-item mr-lg-2 mb-lg-0 mb-2 dropdown">
-                        <button class="dropbtn"> <a style="color: black ;" href="contact.html">Liên Hệ</a></button>
+                        <button class="dropbtn"> <a style="color: black ;" href="?quanly=allProduct">Tất cả sản
+                                Phẩm</a></button>
+
+                    </li>
+                    <li class="nav-item mr-lg-2 mb-lg-0 mb-2 dropdown">
+                        <button class="dropbtn"> <a style="color: black ;">Liên Hệ</a></button>
 
                     </li>
                 </ul>

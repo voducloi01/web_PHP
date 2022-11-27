@@ -76,6 +76,8 @@ include_once('db/connect.php');
         include_once('include/buildPc.php');
     } elseif ($tam == 'totalBuild') {
         include_once('include/totalBuild.php');
+    } elseif ($tam == 'allProduct') {
+        include_once('include/allProduct.php');
     } else {
         include_once('include/home.php');
     }

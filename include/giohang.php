@@ -13,7 +13,7 @@ if (isset($_POST['thanhtoandangnhap'])) {
     //  $taikhoan = $_POST['email_login'];
     $tensanpham  = $_POST['nameproduct'];
     $sl = $_POST['quantity'];
-    $tongtien = $_POST['total'];
+    $tongtien = $_POST['sumtotal'];
     try {
 
         $mail->SMTPDebug = 0;
@@ -21,7 +21,7 @@ if (isset($_POST['thanhtoandangnhap'])) {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'ducloi1244@gmail.com';
-        $mail->Password = 'zseumiqcwlfdeovd';
+        $mail->Password = 'dedsvivegzatfknh';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
         //Recipients
@@ -191,6 +191,8 @@ if (isset($_POST['themgiohang'])) {
                         <input type="hidden" name="total"
                             value="<?php echo $row_fetch_giohang['soluong'] * $row_fetch_giohang['giasanpham'] ?>">
 
+                        <input type="hidden" name="sumtotal" value="<?php echo $sumtotal ?>">
+
                         <input type="hidden" name="giatien"
                             value="<?php echo $row_fetch_giohang['giasanpham'] * $row_fetch_giohang['giasanpham'] ?>">
                         <?php
@@ -263,27 +265,29 @@ if (isset($_POST['themgiohang'])) {
 
     </div>
 
-    <!-- <div>
-
+    <?php
+    if (isset($_SESSION['dangnhap_home'])) {
+    ?>
+    <div>
         <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded"
             action="include/xulythanhtoanmomo.php">
 
-            <input type="hidden" name="tongtien_vnd" value="<?php echo number_format($sumtotal) ?> ">
+            <input type="hidden" name="tongtien_vnd" value="<?php echo $sumtotal ?>">
 
-            <input type="submit" class="btn btn-primary" value="Thanh Toán MoMo" name="captureWallet">
+            <input type="submit" class="btn btn-danger" value="Thanh Toán MoMo" name="captureWallet">
         </form>
-        <br>
+        </br>
         <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded"
-            action="include/thanhtoanqua_atm.php">
+            action="include/vnpay_php1/index.php">
 
-            <input type="hidden" name="tongtien_vnd" value="<?php echo number_format($sumtotal) ?> ">
+            <input type="hidden" name="tongtien_vnd" value="<?php echo $sumtotal ?>">
 
-            <input type="submit" style="width:167px" class="btn btn-primary" value="Thanh Toán ATM" name="payWithATM">
+            <input type="submit" class="btn btn-danger" value="Thanh Toán VNPAY" name="VNPAY">
         </form>
+    </div>
+    <?php } ?>
 
-    </div> -->
     <?php
-
     if (!isset($_SESSION['dangnhap_home'])) {
     ?>
     <div class="checkout-left">

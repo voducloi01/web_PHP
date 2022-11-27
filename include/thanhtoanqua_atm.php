@@ -65,6 +65,3 @@ $extraData = "";
     //Just a example, please check more in there
 
     header('Location: ' .$jsonResult['payUrl']);
-
-
-?>

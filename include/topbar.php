@@ -73,6 +73,9 @@ localStorage.setItem('email_login', '<?php echo $_SESSION['dangnhap_home']; ?>')
                     <li class="text-center border-right text-white">
                         <i class="fas fa-phone mr-2"></i> 001 234 5678
                     </li>
+                    <?php
+                    if (!isset($_SESSION['dangnhap_home'])) {
+                    ?>
                     <li class="text-center border-right text-white">
                         <a href="#" data-toggle="modal" data-target="#dangnhap" class="text-white">
                             <i class="fas fa-sign-in-alt mr-2"></i> Đăng Nhập </a>
@@ -81,12 +84,11 @@ localStorage.setItem('email_login', '<?php echo $_SESSION['dangnhap_home']; ?>')
                         <a href="#" data-toggle="modal" data-target="#dangky" class="text-white">
                             <i class="fas fa-sign-out-alt mr-2"></i>Đăng Ký </a>
                     </li>
-
-
+                    <?php } ?>
                     <li>
                         <?php
                         if (isset($_SESSION['dangnhap_home'])) {
-                            echo ' <span style="color:#FFFFFF;font-size:15px; padding:20px" >Xin Chào:' . $_SESSION['dangnhap_home'] . '<a  href="index.php?quanly=giohang&dangxuat=1" style="color:#FFFFFF;font-size:15px;> <i style="color:#000;font-size:15px; class="fas fa-sign-out-alt mr-2"></i>  Đăng xuất</a></span>';
+                            echo ' <span style="color:#FFFFFF;font-size:15px; padding:20px" >Xin Chào:' . $_SESSION['dangnhap_home'] . ' <a  href="index.php?quanly=giohang&dangxuat=1" style="color:#FFFFFF;font-size:15px;> <i style="color:#000;font-size:15px; class="fas fa-sign-out-alt mr-2"></i>  Đăng xuất</a></span>';
                         }
                         ?>
                     </li>
@@ -109,7 +111,7 @@ localStorage.setItem('email_login', '<?php echo $_SESSION['dangnhap_home']; ?>')
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="post">
+                <form action="" method="POST">
                     <div class="form-group">
                         <label class="col-form-label">Email</label>
                         <input type="text" class="form-control" placeholder=" " name="email_login" required="">
@@ -156,7 +158,7 @@ localStorage.setItem('email_login', '<?php echo $_SESSION['dangnhap_home']; ?>')
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Email</label>
-                        <input type="email" class="form-control" placeholder=" " name="email" required="">
+                        <input type="email" class="form-control" placeholder=" " name="email" value="" required="">
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Password</label>
@@ -185,7 +187,7 @@ localStorage.setItem('email_login', '<?php echo $_SESSION['dangnhap_home']; ?>')
                 <h1 class="text-center">
                     <a href="index.html" class="font-weight-bold font-italic">
                         <img src="images/mk6.jpg" alt=" " width="100" hight="100" class="img-fluid">
-                        <span class="ml-5">Lợi Store</span>
+                        <span class="ml-5"> Store</span>
                     </a>
 
                 </h1>
